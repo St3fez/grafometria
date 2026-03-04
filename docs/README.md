@@ -20,6 +20,14 @@ This folder is ready to be published as a static website for HandwritingAnalysis
 6. Copy resulting URL, for example:
    - `https://<github-username>.github.io/<repo-name>/privacy-policy.html`
 
+## Live URLs (current repo)
+- Docs home: `https://st3fez.github.io/grafometria/`
+- Privacy: `https://st3fez.github.io/grafometria/privacy-policy.html`
+- Terms: `https://st3fez.github.io/grafometria/terms-of-use.html`
+- Disclaimer: `https://st3fez.github.io/grafometria/disclaimer.html`
+- Support: `https://st3fez.github.io/grafometria/support.html`
+- Scientific references: `https://st3fez.github.io/grafometria/scientific-references.html`
+
 ## Google Play fields
 Use public URLs from this folder for:
 - Privacy Policy URL (required)
