@@ -46,16 +46,12 @@ flutter pub get
 flutter run -d <android_device_id>
 ```
 
-## Public Docs (GitHub Pages)
-This repo includes publication-ready public docs in [`docs/`](docs/):
+## Public URL for Play Console
+Only the privacy policy page is intended as public URL for Play Console:
 - [`docs/privacy-policy.html`](docs/privacy-policy.html)
-- [`docs/terms-of-use.html`](docs/terms-of-use.html)
-- [`docs/disclaimer.html`](docs/disclaimer.html)
-- [`docs/support.html`](docs/support.html)
-- [`docs/scientific-references.html`](docs/scientific-references.html)
+- Live URL: `https://st3fez.github.io/grafometria/privacy-policy.html`
 
-To publish on GitHub Pages, deploy from branch folder `/docs` and use the
-generated URL in Play Console Privacy Policy field.
+GitHub Pages root (`/`) redirects directly to privacy policy.
 
 ## Notes
 - The analysis pipeline is deterministic V1 and runs locally on-device.

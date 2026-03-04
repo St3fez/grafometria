@@ -5,12 +5,7 @@ Last review date: March 4, 2026
 ## 1) Mandatory public links
 - Privacy Policy URL:
   - `https://st3fez.github.io/grafometria/privacy-policy.html`
-- Terms URL (recommended):
-  - `https://st3fez.github.io/grafometria/terms-of-use.html`
-- Disclaimer URL (recommended):
-  - `https://st3fez.github.io/grafometria/disclaimer.html`
-- Support URL (recommended):
-  - `https://st3fez.github.io/grafometria/support.html`
+- No other public legal pages are required for current release.
 
 ## 2) Store listing alignment
 - App name shown: `HandwritingAnalysis`.
