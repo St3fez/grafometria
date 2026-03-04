@@ -1,0 +1,213 @@
+{
+  "@@locale": "de",
+  "appTitle": "HandwritingAnalysis",
+  "languageTooltip": "Sprache",
+  "languageSystemDefault": "Systemstandard",
+  "privacyTooltip": "Datenschutz und Haftungsausschluss",
+  "loadingPrivacySettings": "Datenschutzeinstellungen werden geladen...",
+  "tickConsentBeforeContinuing": "Bitte Zustimmung markieren, bevor Sie fortfahren.",
+  "consentSavedCameraEnabled": "Zustimmung gespeichert. Kameraufnahme aktiviert.",
+  "analyzingPreparingResultPopup": "Handschrift wird analysiert und Ergebnis-Popup vorbereitet...",
+  "freeModeSummary": "Free-Modus: Basisprofil mit Werbung. Pro-Modus: Vollbericht fur {price}.",
+  "@freeModeSummary": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "headerSubtitle": "Live-Kamera-Analyse. Modernes Ergebnis-Popup mit klaren Ampel-Indikatoren.",
+  "captureLivePhoto": "Live-Foto aufnehmen",
+  "trustLiveCameraOnly": "Nur Live-Kamera",
+  "trustNoGalleryOrFile": "Keine Galerie-/Datei-Eingabe",
+  "trustTemporaryCleanup": "Temporare Foto-Bereinigung",
+  "consentRequiredTitle": "Zustimmung zu Datenschutz und Haftungsausschluss erforderlich",
+  "consentRequiredBody": "Bitte Datenschutz/Haftungsausschluss vor der ersten Analyse lesen. Die App ist edukativ und nicht diagnostisch.",
+  "consentCheckbox": "Ich habe die Richtlinie gelesen und stimme zu.",
+  "readPolicy": "Richtlinie lesen",
+  "acceptAndContinue": "Akzeptieren und fortfahren",
+  "noCaptureYet": "Noch keine Aufnahme. Bitte Live-Kamera verwenden.",
+  "resultPopupReadyTitle": "Ihr Ergebnis-Popup ist bereit",
+  "proPopupReadyTitle": "Ihr Pro-Popup-Bericht ist bereit",
+  "resultPopupBody": "Offnen Sie das Popup mit Tabs fur Free, Pro und Teilen.",
+  "openResultPopup": "Ergebnis offnen",
+  "share": "Teilen",
+  "purchaseStreamError": "Fehler im Kauf-Stream.",
+  "storeProductUnavailable": "Store-Produkt nicht verfugbar. Konfigurieren Sie zuerst \"{productId}\".",
+  "@storeProductUnavailable": {
+    "placeholders": {
+      "productId": {}
+    }
+  },
+  "openingSecureCheckout": "Sicherer Checkout wird geoffnet...",
+  "proReportUnlocked": "Pro-Bericht freigeschaltet.",
+  "purchaseFailed": "Kauf fehlgeschlagen.",
+  "purchaseCanceled": "Kauf abgebrochen.",
+  "privacyAccepted": "Datenschutz und Haftungsausschluss akzeptiert.",
+  "consentWithdrawn": "Zustimmung widerrufen. Aufnahme deaktiviert.",
+  "shareMyResult": "Mein HandwritingAnalysis Ergebnis:",
+  "shareConfidenceLine": "Vertrauen: {label} ({percent}%)",
+  "@shareConfidenceLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {}
+    }
+  },
+  "shareDetailedMetricsHeader": "Detaillierte Metriken:",
+  "shareProHint": "Pro-Freischaltung zeigt alle quantitativen Details.",
+  "shareTryApp": "Probieren Sie HandwritingAnalysis aus.",
+  "graphometryResult": "HandwritingAnalysis Ergebnis",
+  "reliabilityLine": "Zuverlassigkeit: {label} ({percent}%)",
+  "@reliabilityLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {}
+    }
+  },
+  "confidenceHigh": "Hoch",
+  "confidenceMedium": "Mittel",
+  "confidenceLow": "Niedrig",
+  "photoQualityShortLine": "Fotoqualitat: {percent}%",
+  "@photoQualityShortLine": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "overallSummaryGreen": "Gesamtprofil: zentrierte Personlichkeit, emotionale Ruhe und gute Selbstregulation.",
+  "overallSummaryOrange": "Gesamtprofil: sensible Personlichkeit mit innerer Spannung und emotionalen Schwankungen.",
+  "overallSummaryRed": "Gesamtprofil: deutliche emotionale Dysregulation und psychologische Hochrisiko-Merkmale treten hervor.",
+  "overallDescriptionGreen": "Grunes Profil: die Merkmale sprechen fur affektive Stabilitat, ausgewogene Impulskontrolle und adaptive Bewaltigung von Alltagsstress.",
+  "overallDescriptionOrange": "Oranges Profil: die Merkmale sprechen fur hohe Sensibilitat, erhohte innere Last und Verletzlichkeit unter Druck; in Stressphasen kann die relationale Reaktivitat steigen.",
+  "overallDescriptionRed": "Rotes Profil: die Merkmale sprechen fur persistente psychische Belastungsmuster, mogliche affektive Dysregulation und potenziell pathologische Marker. Wenn sich dieses Muster wiederholt, wird eine professionelle Abklarung empfohlen.",
+  "quickSummaryCompact": "{state} Baseline-Tendenz: {baseline}. Beziehungsstil: {slant}.",
+  "@quickSummaryCompact": {
+    "placeholders": {
+      "state": {},
+      "baseline": {},
+      "slant": {}
+    }
+  },
+  "quickBaselineUp": "aufwarts",
+  "quickBaselineDown": "abwarts",
+  "quickBaselineStable": "stabil",
+  "quickSlantRight": "offener",
+  "quickSlantLeft": "reservierter",
+  "quickSlantNeutral": "ausgewogen",
+  "detailedSpacingNarrative": "Das Abstandsverhaltnis {value} deutet auf {tendency} hin.",
+  "@detailedSpacingNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedSpacingAutonomy": "eine starkere Autonomie-Tendenz",
+  "detailedSpacingCloseness": "eine starkere relationale Nahe-Tendenz",
+  "detailedSizeNarrative": "Die Grossenvarianz {value} deutet auf {tendency} hin.",
+  "@detailedSizeNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedSizeFluctuating": "schwankende Aufmerksamkeitskonsistenz",
+  "detailedSizeStable": "einen stabilen Aufmerksamkeitsrhythmus",
+  "detailedPenLiftNarrative": "Die Stiftabsetz-Frequenz {value} deutet auf {tendency} hin.",
+  "@detailedPenLiftNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedPenLiftSegmented": "segmentierte kognitive Sequenzierung",
+  "detailedPenLiftFluid": "flussige kognitive Kontinuitat",
+  "detailedInterpretationNote": "Interpretationshinweis: Diese Auswertung ist ein psychologisches Screening und keine medizinische oder psychiatrische Diagnose.",
+  "metricBaselineName": "Baseline-Winkel",
+  "metricBaselineExplanation": "Misst Linien-Stabilitat und Richtungsdrift in der Schriftprobe.",
+  "metricBaselineRule": "Signalregel: Grun <= 4.5°, Orange <= 9°, Rot > 9°.",
+  "metricSlantName": "Neigungswinkel",
+  "metricSlantExplanation": "Erfasst emotionale Offenheit versus eher defensiven Kommunikationsstil.",
+  "metricSlantRule": "Signalregel: Grun <= 12.5°, Orange <= 20°, Rot > 20°.",
+  "metricPressureName": "Druckindex",
+  "metricPressureExplanation": "Schatzt Ausdruckskraft aus Strichdichte und Dunkelheit.",
+  "metricPressureRule": "Signalregel: Grun 0.34-0.72, Orange 0.24-0.82, Rot ausserhalb Bereich.",
+  "metricSpacingName": "Abstandsverhaltnis",
+  "metricSpacingExplanation": "Misst die mittlere Balance der Abstande zwischen Strichgruppen.",
+  "metricSpacingRule": "Signalregel: Grun 0.82-1.55, Orange 0.60-1.95, Rot ausserhalb Bereich.",
+  "metricSizeVarianceName": "Grossenvarianz",
+  "metricSizeVarianceExplanation": "Spiegelt die Konsistenz von Buchstabenhohe und visuellem Rhythmus wider.",
+  "metricSizeVarianceRule": "Signalregel: Grun <= 0.42, Orange <= 0.66, Rot > 0.66.",
+  "metricPenLiftsName": "Stiftabsetzungen",
+  "metricPenLiftsExplanation": "Nahert an, wie segmentiert oder kontinuierlich die motorische Sequenz wirkt.",
+  "metricPenLiftsRule": "Signalregel: Grun <= 0.46, Orange <= 0.70, Rot > 0.70.",
+  "qualityGateTitle": "Aufnahme-Qualitatscheck",
+  "qualityGateBody": "Einige Aufnahmebedingungen reduzieren die Zuverlassigkeit. Verbessern Sie das Foto vor der Interpretation.",
+  "qualityGateScoreLine": "Aufnahmequalitat: {percent}%",
+  "@qualityGateScoreLine": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "qualityHintCoverageLow": "Der Schreibbereich ist im Bildausschnitt zu klein.",
+  "qualityHintContrastLow": "Kontrast zu niedrig: mehr Licht und weniger Schatten.",
+  "qualityHintSharpnessLow": "Bild wirkt unscharf: Kamera stabilisieren und neu fokussieren.",
+  "qualityHintGeneric": "Ein oder mehrere Qualitatsfaktoren liegen unter dem optimalen Niveau.",
+  "qualityRetakeHint": "Tipp: naher aufnehmen, gleichmassiges Licht, keine Spiegelungen.",
+  "scienceRefsTitle": "Wissenschaftliche Quellen",
+  "scienceRefsDisclaimer": "Nur zu Informationszwecken. Die App stellt keine Diagnose.",
+  "openSource": "Quelle offnen",
+  "freeProTeaserTitle": "Mochten Sie die vollstandige Detailanalyse?",
+  "freeProTeaserBody": "Schalten Sie Pro frei fur vollstandiges psychologisches Profil, alle quantitativen Marker und ein werbefreies Ergebnis fur {price}.",
+  "@freeProTeaserBody": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "freeProTeaserButton": "Pro-Angebot ansehen",
+  "proMoreIndicatorsHint": "Pro-Funktionen: schalten Sie {count} zusatzliche Indikatoren und die vollstandige Detailanalyse frei.",
+  "@proMoreIndicatorsHint": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "errorUnsupportedImageFormat": "Nicht unterstutztes Bildformat.",
+  "errorImageTooSmall": "Bild zu klein. Bitte naher und scharfer fotografieren.",
+  "errorNotEnoughHandwriting": "Zu wenig Handschrift erkannt. Bitte mit besserem Bildausschnitt erneut versuchen.",
+  "tabFree": "Kostenlos",
+  "tabPro": "Pro",
+  "tabShare": "Teilen",
+  "legendTitle": "Psychologische Ampel-Legende",
+  "legendBody": "Grun: Gleichgewicht und Gelassenheit.\nOrange: emotionale Spannung/Vulnerabilitat.\nRot: potenziell pathologische Merkmale (Screening-Signal).",
+  "unlockFullPsychProfile": "Vollstandiges psychologisches Profil freischalten",
+  "unlockFullPsychProfileBody": "Die Analyse ist abgeschlossen. Schalten Sie die vollstandige psychologische Interpretation, die Ampel-Bedeutung und alle quantitativen Marker frei.",
+  "valuePsychReport": "Vollstandiger psychologischer Bericht",
+  "valueRiskMarkers": "Potenzielle Risikomarker",
+  "valueNoAdsThisResult": "Keine Werbung fur dieses Ergebnis",
+  "processing": "Verarbeitung...",
+  "unlockProForPrice": "Pro freischalten fur {price}",
+  "@unlockProForPrice": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "storeSetupPending": "Einrichtung des Store-Produkts ausstehend.",
+  "sharePanelText": "Teilen auf WhatsApp, Telegram, TikTok, Instagram, Facebook oder per System-Share.",
+  "openPrivacyDisclaimer": "Datenschutz und Haftungsausschluss offnen",
+  "policyTitle": "Datenschutz und Haftungsausschluss",
+  "policyBody": "Aktualisiert: 4. Marz 2026\n\n1) Zweck und Rechtsgrundlage\nNur edukative Nutzung. Die Verarbeitung basiert auf ausdrucklicher Einwilligung (DSGVO Art. 6(1)(a) und ggf. Art. 9(2)(a)).\n\n2) Datenminimierung\nNur Live-Kamera. Keine Galerie-/Datei-Eingabe. Temporare Fotos werden nach bestem Bemuhen geloscht. Die Grundsatze der Datenminimierung und Zweckbindung werden angewendet (DSGVO Art. 5 und Art. 25).\n\n3) Grenzen des Profilings\nDiese App nicht fur Entscheidungen zu Einstellung, Kredit, Versicherung, Recht oder anderen hochwirksamen Bereichen nutzen. Entscheidungen durfen nicht ausschliesslich auf dieser automatisierten Ausgabe beruhen (DSGVO Art. 22).\n\n4) Verarbeitung durch Dritte\nDer Free-Modus nutzt Werbe-SDKs. Die Pro-Freischaltung nutzt Store-Abrechnung. Anbieter konnen Geraete-/Transaktionskennungen verarbeiten.\n\n5) Transparenz\nNutzer werden daruber informiert, dass sie mit KI-generierten Inhalten interagieren (AI Act Art. 50, Transparenzprinzip).\n\n6) Grenzen verbotener Nutzung\nDie App darf nicht fur manipulative oder schadliche Social-Scoring-ahnliche Zwecke verwendet werden (AI Act Art. 5, verbotene Praktiken).\n\n7) Rechte der Nutzer\nNutzer konnen ihre Einwilligung jederzeit in diesem Bereich widerrufen. Informationspflichten und Rechte sollten im storeseitigen Datenschutzhinweis abgebildet sein (DSGVO Art. 13 und Art. 15-17).\n\n8) Medizinischer Hinweis\nEs wird keine medizinische oder klinische Diagnose gestellt. Ein rotes Ergebnis zeigt potenzielle Risikomarker, keine bestatigte Storung.\n\n9) Compliance-Hinweis\nDieser In-App-Text ist keine Rechtsberatung. Vor Veroffentlichung ist eine vollstandige Rechtsprufung erforderlich.",
+  "withdrawConsent": "Zustimmung widerrufen",
+  "keepDisabled": "Deaktiviert lassen",
+  "accept": "Akzeptieren",
+  "signalBalance": "Gleichgewicht",
+  "signalVulnerability": "Vulnerabilitat",
+  "signalPotentialPathology": "Potenzielle Pathologie",
+  "overallGreenTitle": "GRUNES PROFIL - Gleichgewicht und Gelassenheit",
+  "overallOrangeTitle": "ORANGES PROFIL - Emotionale Spannung und Fragilitat",
+  "overallRedTitle": "ROTES PROFIL - Potenziell pathologische Merkmale",
+  "proUnlockedFullDataAvailable": "Pro freigeschaltet. Vollstandige Daten verfugbar.",
+  "storeProductUnavailableNow": "Store-Produkt nicht verfugbar.",
+  "whatsappLabel": "WhatsApp",
+  "telegramLabel": "Telegram",
+  "tiktokLabel": "TikTok",
+  "instagramLabel": "Instagram",
+  "facebookLabel": "Facebook",
+  "moreLabel": "Mehr"
+}
+

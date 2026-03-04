@@ -1,0 +1,213 @@
+{
+  "@@locale": "en",
+  "appTitle": "HandwritingAnalysis",
+  "languageTooltip": "Language",
+  "languageSystemDefault": "System default",
+  "privacyTooltip": "Privacy and disclaimer",
+  "loadingPrivacySettings": "Loading privacy settings...",
+  "tickConsentBeforeContinuing": "Tick consent before continuing.",
+  "consentSavedCameraEnabled": "Consent saved. Camera capture enabled.",
+  "analyzingPreparingResultPopup": "Analyzing handwriting and preparing result popup...",
+  "freeModeSummary": "Free mode: ad-supported basic profile. Pro mode: full report for {price}.",
+  "@freeModeSummary": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "headerSubtitle": "Live camera analysis. Modern popup result with clear traffic-light indicators.",
+  "captureLivePhoto": "Capture Live Photo",
+  "trustLiveCameraOnly": "Live camera only",
+  "trustNoGalleryOrFile": "No gallery or file intake",
+  "trustTemporaryCleanup": "Temporary photo cleanup",
+  "consentRequiredTitle": "Privacy and disclaimer consent required",
+  "consentRequiredBody": "Review privacy/disclaimer before first analysis. The app is educational and non-diagnostic.",
+  "consentCheckbox": "I have read and agree to the policy.",
+  "readPolicy": "Read policy",
+  "acceptAndContinue": "Accept and continue",
+  "noCaptureYet": "No capture yet. Use live camera.",
+  "resultPopupReadyTitle": "Your result popup is ready",
+  "proPopupReadyTitle": "Your Pro popup report is ready",
+  "resultPopupBody": "Open the tabbed popup for Free, Pro and Share sections.",
+  "openResultPopup": "Open Result Popup",
+  "share": "Share",
+  "purchaseStreamError": "Purchase stream error.",
+  "storeProductUnavailable": "Store product unavailable. Configure \"{productId}\" first.",
+  "@storeProductUnavailable": {
+    "placeholders": {
+      "productId": {}
+    }
+  },
+  "openingSecureCheckout": "Opening secure checkout...",
+  "proReportUnlocked": "Pro report unlocked.",
+  "purchaseFailed": "Purchase failed.",
+  "purchaseCanceled": "Purchase canceled.",
+  "privacyAccepted": "Privacy and disclaimer accepted.",
+  "consentWithdrawn": "Consent withdrawn. Capture disabled.",
+  "shareMyResult": "My HandwritingAnalysis result:",
+  "shareConfidenceLine": "Confidence: {label} ({percent}%)",
+  "@shareConfidenceLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {}
+    }
+  },
+  "shareDetailedMetricsHeader": "Detailed metrics:",
+  "shareProHint": "Pro unlock reveals full quantitative details.",
+  "shareTryApp": "Try HandwritingAnalysis.",
+  "graphometryResult": "HandwritingAnalysis Result",
+  "reliabilityLine": "Reliability: {label} ({percent}%)",
+  "@reliabilityLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {}
+    }
+  },
+  "confidenceHigh": "High",
+  "confidenceMedium": "Medium",
+  "confidenceLow": "Low",
+  "photoQualityShortLine": "Photo quality: {percent}%",
+  "@photoQualityShortLine": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "overallSummaryGreen": "Overall profile: centered personality, emotional steadiness, and good self-regulation.",
+  "overallSummaryOrange": "Overall profile: sensitive personality with inner tension and emotional fluctuations.",
+  "overallSummaryRed": "Overall profile: marked emotional dysregulation and high-risk psychological traits are emerging.",
+  "overallDescriptionGreen": "Green profile: traits suggest stable affect, balanced impulse control, and adaptive coping under everyday stress.",
+  "overallDescriptionOrange": "Orange profile: traits suggest high sensitivity, increased internal load, and vulnerability under pressure; relational reactivity may rise in stressful phases.",
+  "overallDescriptionRed": "Red profile: traits suggest persistent psychological distress patterns, possible affective dysregulation, and potentially pathological markers. If this pattern repeats, seek professional evaluation.",
+  "quickSummaryCompact": "{state} Baseline trend: {baseline}. Relational style: {slant}.",
+  "@quickSummaryCompact": {
+    "placeholders": {
+      "state": {},
+      "baseline": {},
+      "slant": {}
+    }
+  },
+  "quickBaselineUp": "upward",
+  "quickBaselineDown": "downward",
+  "quickBaselineStable": "stable",
+  "quickSlantRight": "more open",
+  "quickSlantLeft": "more reserved",
+  "quickSlantNeutral": "balanced",
+  "detailedSpacingNarrative": "Spacing ratio {value} suggests {tendency}.",
+  "@detailedSpacingNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedSpacingAutonomy": "a stronger autonomy boundary",
+  "detailedSpacingCloseness": "a stronger relational closeness tendency",
+  "detailedSizeNarrative": "Size variance {value} suggests {tendency}.",
+  "@detailedSizeNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedSizeFluctuating": "fluctuating attentional consistency",
+  "detailedSizeStable": "a stable attentional rhythm",
+  "detailedPenLiftNarrative": "Pen-lift frequency {value} suggests {tendency}.",
+  "@detailedPenLiftNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedPenLiftSegmented": "segmented cognitive sequencing",
+  "detailedPenLiftFluid": "fluid cognitive continuity",
+  "detailedInterpretationNote": "Interpretation note: this is a screening-style psychological reading, not a medical or psychiatric diagnosis.",
+  "metricBaselineName": "Baseline angle",
+  "metricBaselineExplanation": "Tracks line stability and directional drift across the writing sample.",
+  "metricBaselineRule": "Signal rule: Green <= 4.5°, Orange <= 9°, Red > 9°.",
+  "metricSlantName": "Slant angle",
+  "metricSlantExplanation": "Captures emotional openness versus guarded communication style.",
+  "metricSlantRule": "Signal rule: Green <= 12.5°, Orange <= 20°, Red > 20°.",
+  "metricPressureName": "Pressure index",
+  "metricPressureExplanation": "Estimates expressive force from stroke darkness and density.",
+  "metricPressureRule": "Signal rule: Green 0.34-0.72, Orange 0.24-0.82, Red outside range.",
+  "metricSpacingName": "Spacing ratio",
+  "metricSpacingExplanation": "Measures average gap balance between stroke clusters.",
+  "metricSpacingRule": "Signal rule: Green 0.82-1.55, Orange 0.60-1.95, Red outside range.",
+  "metricSizeVarianceName": "Size variance",
+  "metricSizeVarianceExplanation": "Reflects consistency of letter height and visual rhythm.",
+  "metricSizeVarianceRule": "Signal rule: Green <= 0.42, Orange <= 0.66, Red > 0.66.",
+  "metricPenLiftsName": "Pen lifts",
+  "metricPenLiftsExplanation": "Approximates how segmented or continuous the motor sequence appears.",
+  "metricPenLiftsRule": "Signal rule: Green <= 0.46, Orange <= 0.70, Red > 0.70.",
+  "qualityGateTitle": "Capture quality check",
+  "qualityGateBody": "Some capture conditions can reduce reliability. Improve framing before trusting details.",
+  "qualityGateScoreLine": "Capture quality: {percent}%",
+  "@qualityGateScoreLine": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "qualityHintCoverageLow": "Handwriting area is too small in frame.",
+  "qualityHintContrastLow": "Contrast is low; increase light and avoid shadows.",
+  "qualityHintSharpnessLow": "Image appears soft; keep camera steady and refocus.",
+  "qualityHintGeneric": "One or more quality factors are below optimal level.",
+  "qualityRetakeHint": "Tip: retake with closer framing, uniform light, and no glare.",
+  "scienceRefsTitle": "Scientific references",
+  "scienceRefsDisclaimer": "Educational references only. This app does not provide diagnosis.",
+  "openSource": "Open source",
+  "freeProTeaserTitle": "Want the full detailed analysis?",
+  "freeProTeaserBody": "Unlock Pro to access complete psychological profile, all quantitative markers, and ad-free result at {price}.",
+  "@freeProTeaserBody": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "freeProTeaserButton": "See Pro offer",
+  "proMoreIndicatorsHint": "Pro functions: unlock {count} additional indicators and full detailed analysis.",
+  "@proMoreIndicatorsHint": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "errorUnsupportedImageFormat": "Unsupported image format.",
+  "errorImageTooSmall": "Image too small. Capture a closer and sharper photo.",
+  "errorNotEnoughHandwriting": "Not enough handwriting detected. Try with better framing.",
+  "tabFree": "Free",
+  "tabPro": "Pro",
+  "tabShare": "Share",
+  "legendTitle": "Psychological traffic-light legend",
+  "legendBody": "Green: equilibrium and serenity.\nOrange: emotional tension/vulnerability.\nRed: potentially pathological traits (screening signal).",
+  "unlockFullPsychProfile": "Unlock the full psychological profile",
+  "unlockFullPsychProfileBody": "You already completed analysis. Unlock complete psychological interpretation, semaforo meaning, and full quantitative markers.",
+  "valuePsychReport": "Psychological full report",
+  "valueRiskMarkers": "Potential risk markers",
+  "valueNoAdsThisResult": "No ads for this result",
+  "processing": "Processing...",
+  "unlockProForPrice": "Unlock Pro for {price}",
+  "@unlockProForPrice": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "storeSetupPending": "Store product setup pending.",
+  "sharePanelText": "Share on WhatsApp, Telegram, TikTok, Instagram, Facebook or system share.",
+  "openPrivacyDisclaimer": "Open privacy and disclaimer",
+  "policyTitle": "Privacy and Disclaimer",
+  "policyBody": "Updated: March 4, 2026\n\n1) Purpose and legal basis\nEducational use only. Processing is based on explicit consent (GDPR Art. 6(1)(a) and, where applicable, Art. 9(2)(a)).\n\n2) Data minimization\nLive camera only. No gallery/file intake. Temporary photos are deleted on a best-effort basis. Data-minimization and purpose-limitation principles are applied (GDPR Art. 5 and Art. 25).\n\n3) Profiling limits\nDo not use this app for hiring, credit, insurance, legal or high-impact decisions. No decision should be made solely on this automated output (GDPR Art. 22).\n\n4) Third-party processing\nFree mode uses ad SDKs. Pro unlock uses store billing. Providers may process device/transaction identifiers.\n\n5) Transparency\nUsers are informed that they are interacting with AI-generated content (AI Act Art. 50 transparency principle).\n\n6) Prohibited-use boundaries\nThe app must not be used for manipulative or harmful social-scoring-like uses (AI Act Art. 5 prohibited practices).\n\n7) User rights\nUsers can withdraw consent at any time from this panel. Information duties and rights should be reflected in store-facing privacy notice (GDPR Art. 13 and Arts. 15-17).\n\n8) Medical disclaimer\nNo medical or clinical diagnosis is provided. A red result indicates potential risk markers, not a confirmed disorder.\n\n9) Compliance note\nThis in-app text is not legal advice. Complete legal review before public release.",
+  "withdrawConsent": "Withdraw consent",
+  "keepDisabled": "Keep disabled",
+  "accept": "Accept",
+  "signalBalance": "Balance",
+  "signalVulnerability": "Vulnerability",
+  "signalPotentialPathology": "Potential pathology",
+  "overallGreenTitle": "GREEN PROFILE - Equilibrium and serenity",
+  "overallOrangeTitle": "ORANGE PROFILE - Emotional tension and fragility",
+  "overallRedTitle": "RED PROFILE - Potentially pathological traits",
+  "proUnlockedFullDataAvailable": "Pro unlocked. Full data available.",
+  "storeProductUnavailableNow": "Store product unavailable.",
+  "whatsappLabel": "WhatsApp",
+  "telegramLabel": "Telegram",
+  "tiktokLabel": "TikTok",
+  "instagramLabel": "Instagram",
+  "facebookLabel": "Facebook",
+  "moreLabel": "More"
+}
+

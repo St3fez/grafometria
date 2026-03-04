@@ -1,0 +1,213 @@
+{
+  "@@locale": "it",
+  "appTitle": "HandwritingAnalysis",
+  "languageTooltip": "Lingua",
+  "languageSystemDefault": "Predefinita di sistema",
+  "privacyTooltip": "Privacy e disclaimer",
+  "loadingPrivacySettings": "Caricamento impostazioni privacy...",
+  "tickConsentBeforeContinuing": "Seleziona il consenso prima di continuare.",
+  "consentSavedCameraEnabled": "Consenso salvato. Acquisizione fotocamera abilitata.",
+  "analyzingPreparingResultPopup": "Analisi della scrittura e preparazione del popup risultato...",
+  "freeModeSummary": "Modalità Free: profilo base con pubblicità. Modalità Pro: report completo a {price}.",
+  "@freeModeSummary": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "headerSubtitle": "Analisi con fotocamera live. Risultato moderno in popup con indicatori semaforici chiari.",
+  "captureLivePhoto": "Scatta Foto Live",
+  "trustLiveCameraOnly": "Solo fotocamera live",
+  "trustNoGalleryOrFile": "Nessuna galleria o file",
+  "trustTemporaryCleanup": "Pulizia foto temporanee",
+  "consentRequiredTitle": "Consenso privacy e disclaimer richiesto",
+  "consentRequiredBody": "Leggi privacy/disclaimer prima della prima analisi. L'app è divulgativa e non diagnostica.",
+  "consentCheckbox": "Ho letto e accetto la policy.",
+  "readPolicy": "Leggi policy",
+  "acceptAndContinue": "Accetta e continua",
+  "noCaptureYet": "Nessuna acquisizione. Usa la fotocamera live.",
+  "resultPopupReadyTitle": "Il tuo popup risultato è pronto",
+  "proPopupReadyTitle": "Il tuo report Pro in popup è pronto",
+  "resultPopupBody": "Apri il popup a schede Free, Pro e Share.",
+  "openResultPopup": "Apri Popup Risultato",
+  "share": "Condividi",
+  "purchaseStreamError": "Errore nello stream acquisti.",
+  "storeProductUnavailable": "Prodotto store non disponibile. Configura prima \"{productId}\".",
+  "@storeProductUnavailable": {
+    "placeholders": {
+      "productId": {}
+    }
+  },
+  "openingSecureCheckout": "Apertura checkout sicuro...",
+  "proReportUnlocked": "Report Pro sbloccato.",
+  "purchaseFailed": "Acquisto non riuscito.",
+  "purchaseCanceled": "Acquisto annullato.",
+  "privacyAccepted": "Privacy e disclaimer accettati.",
+  "consentWithdrawn": "Consenso revocato. Acquisizione disabilitata.",
+  "shareMyResult": "Il mio risultato HandwritingAnalysis:",
+  "shareConfidenceLine": "Affidabilità: {label} ({percent}%)",
+  "@shareConfidenceLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {}
+    }
+  },
+  "shareDetailedMetricsHeader": "Metriche dettagliate:",
+  "shareProHint": "Lo sblocco Pro mostra tutti i dettagli quantitativi.",
+  "shareTryApp": "Prova HandwritingAnalysis.",
+  "graphometryResult": "Risultato HandwritingAnalysis",
+  "reliabilityLine": "Affidabilità: {label} ({percent}%)",
+  "@reliabilityLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {}
+    }
+  },
+  "confidenceHigh": "Alta",
+  "confidenceMedium": "Media",
+  "confidenceLow": "Bassa",
+  "photoQualityShortLine": "Qualità foto: {percent}%",
+  "@photoQualityShortLine": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "overallSummaryGreen": "Profilo generale: personalità centrata, serena e con buona autoregolazione.",
+  "overallSummaryOrange": "Profilo generale: personalità sensibile con tensione interna e sbalzi.",
+  "overallSummaryRed": "Profilo generale: segnali di disregolazione emotiva e rischio elevato.",
+  "overallDescriptionGreen": "Profilo verde: emergono stabilità affettiva, buon controllo degli impulsi e capacità di adattarsi allo stress quotidiano senza perdere equilibrio.",
+  "overallDescriptionOrange": "Profilo arancione: emergono elevata sensibilità, carico interno aumentato e vulnerabilità alla pressione; nelle fasi stressanti può crescere la reattività relazionale.",
+  "overallDescriptionRed": "Profilo rosso: emergono pattern persistenti di sofferenza psicologica, possibile disregolazione affettiva e marcatori potenzialmente patologici. Se il quadro si ripete, è consigliabile un approfondimento professionale.",
+  "quickSummaryCompact": "{state} Andamento baseline: {baseline}. Stile relazionale: {slant}.",
+  "@quickSummaryCompact": {
+    "placeholders": {
+      "state": {},
+      "baseline": {},
+      "slant": {}
+    }
+  },
+  "quickBaselineUp": "in crescita",
+  "quickBaselineDown": "in calo",
+  "quickBaselineStable": "stabile",
+  "quickSlantRight": "più aperto",
+  "quickSlantLeft": "più riservato",
+  "quickSlantNeutral": "equilibrato",
+  "detailedSpacingNarrative": "Il rapporto di spaziatura {value} suggerisce {tendency}.",
+  "@detailedSpacingNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedSpacingAutonomy": "una maggiore tendenza all'autonomia",
+  "detailedSpacingCloseness": "una maggiore tendenza alla vicinanza relazionale",
+  "detailedSizeNarrative": "La varianza dimensionale {value} suggerisce {tendency}.",
+  "@detailedSizeNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedSizeFluctuating": "una continuità attentiva fluttuante",
+  "detailedSizeStable": "un ritmo attentivo stabile",
+  "detailedPenLiftNarrative": "La frequenza dei sollevamenti penna {value} suggerisce {tendency}.",
+  "@detailedPenLiftNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedPenLiftSegmented": "una sequenza cognitiva più segmentata",
+  "detailedPenLiftFluid": "una continuità cognitiva più fluida",
+  "detailedInterpretationNote": "Nota interpretativa: questa lettura è di tipo screening psicologico e non costituisce diagnosi medica o psichiatrica.",
+  "metricBaselineName": "Angolo baseline",
+  "metricBaselineExplanation": "Traccia stabilità della linea e deriva direzionale nel campione di scrittura.",
+  "metricBaselineRule": "Regola segnale: Verde <= 4.5°, Arancione <= 9°, Rosso > 9°.",
+  "metricSlantName": "Angolo inclinazione",
+  "metricSlantExplanation": "Rileva apertura emotiva rispetto a uno stile comunicativo più difensivo.",
+  "metricSlantRule": "Regola segnale: Verde <= 12.5°, Arancione <= 20°, Rosso > 20°.",
+  "metricPressureName": "Indice pressione",
+  "metricPressureExplanation": "Stima la forza espressiva da densità e scurezza del tratto.",
+  "metricPressureRule": "Regola segnale: Verde 0.34-0.72, Arancione 0.24-0.82, Rosso fuori range.",
+  "metricSpacingName": "Rapporto spaziatura",
+  "metricSpacingExplanation": "Misura l'equilibrio medio degli spazi tra i gruppi di tratto.",
+  "metricSpacingRule": "Regola segnale: Verde 0.82-1.55, Arancione 0.60-1.95, Rosso fuori range.",
+  "metricSizeVarianceName": "Varianza dimensione",
+  "metricSizeVarianceExplanation": "Riflette la coerenza di altezza delle lettere e del ritmo visivo.",
+  "metricSizeVarianceRule": "Regola segnale: Verde <= 0.42, Arancione <= 0.66, Rosso > 0.66.",
+  "metricPenLiftsName": "Sollevamenti penna",
+  "metricPenLiftsExplanation": "Approssima quanto la sequenza motoria appaia segmentata o continua.",
+  "metricPenLiftsRule": "Regola segnale: Verde <= 0.46, Arancione <= 0.70, Rosso > 0.70.",
+  "qualityGateTitle": "Controllo qualità acquisizione",
+  "qualityGateBody": "Alcune condizioni di acquisizione riducono l'affidabilità. Migliora la foto prima di fidarti dei dettagli.",
+  "qualityGateScoreLine": "Qualità acquisizione: {percent}%",
+  "@qualityGateScoreLine": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "qualityHintCoverageLow": "Area di scrittura troppo piccola nell'inquadratura.",
+  "qualityHintContrastLow": "Contrasto basso: aumenta la luce ed evita ombre.",
+  "qualityHintSharpnessLow": "Immagine poco nitida: tieni ferma la camera e rifocalizza.",
+  "qualityHintGeneric": "Uno o più fattori qualitativi sono sotto il livello ottimale.",
+  "qualityRetakeHint": "Suggerimento: rifai la foto più vicina, con luce uniforme e senza riflessi.",
+  "scienceRefsTitle": "Riferimenti scientifici",
+  "scienceRefsDisclaimer": "Riferimenti divulgativi. L'app non fornisce diagnosi.",
+  "openSource": "Apri fonte",
+  "freeProTeaserTitle": "Vuoi l'analisi dettagliata completa?",
+  "freeProTeaserBody": "Sblocca Pro per ottenere profilo psicologico completo, tutti i marcatori quantitativi e risultato senza pubblicità a {price}.",
+  "@freeProTeaserBody": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "freeProTeaserButton": "Vai all'offerta Pro",
+  "proMoreIndicatorsHint": "Funzioni Pro: sblocca altri {count} indicatori e analisi dettagliata completa.",
+  "@proMoreIndicatorsHint": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "errorUnsupportedImageFormat": "Formato immagine non supportato.",
+  "errorImageTooSmall": "Immagine troppo piccola. Scatta una foto più vicina e nitida.",
+  "errorNotEnoughHandwriting": "Scrittura insufficiente rilevata. Riprova con un'inquadratura migliore.",
+  "tabFree": "Gratis",
+  "tabPro": "Pro",
+  "tabShare": "Condividi",
+  "legendTitle": "Legenda psicologica semaforica",
+  "legendBody": "Verde: equilibrio e serenità.\nArancione: tensione/vulnerabilità emotiva.\nRosso: tratti potenzialmente patologici (segnale di screening).",
+  "unlockFullPsychProfile": "Sblocca il profilo psicologico completo",
+  "unlockFullPsychProfileBody": "Hai già completato l’analisi. Sblocca interpretazione psicologica completa, significato semaforo e tutti i marcatori quantitativi.",
+  "valuePsychReport": "Report psicologico completo",
+  "valueRiskMarkers": "Marcatori di rischio potenziale",
+  "valueNoAdsThisResult": "Niente ads su questo risultato",
+  "processing": "Elaborazione...",
+  "unlockProForPrice": "Sblocca Pro a {price}",
+  "@unlockProForPrice": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "storeSetupPending": "Configurazione prodotto store in attesa.",
+  "sharePanelText": "Condividi su WhatsApp, Telegram, TikTok, Instagram, Facebook o share di sistema.",
+  "openPrivacyDisclaimer": "Apri privacy e disclaimer",
+  "policyTitle": "Privacy e Disclaimer",
+  "policyBody": "Aggiornato: 4 marzo 2026\n\n1) Finalità e base giuridica\nUso esclusivamente divulgativo. Il trattamento si basa su consenso esplicito (GDPR Art. 6(1)(a) e, se applicabile, Art. 9(2)(a)).\n\n2) Minimizzazione dei dati\nSolo fotocamera live. Nessun accesso a galleria/file. Le foto temporanee sono eliminate in best-effort. Applicati i principi di minimizzazione e limitazione della finalità (GDPR Art. 5 e Art. 25).\n\n3) Limiti di profilazione\nNon usare l’app per assunzioni, credito, assicurazioni, ambito legale o decisioni ad alto impatto. Nessuna decisione deve basarsi solo su questo output automatizzato (GDPR Art. 22).\n\n4) Trattamenti di terze parti\nLa modalità Free usa SDK pubblicitari. Lo sblocco Pro usa billing dello store. I provider possono trattare identificativi dispositivo/transazione.\n\n5) Trasparenza\nGli utenti sono informati che interagiscono con contenuti generati da AI (principio di trasparenza AI Act Art. 50).\n\n6) Confini d’uso vietato\nL’app non deve essere usata per pratiche manipolative o simili al social scoring dannoso (AI Act Art. 5 pratiche vietate).\n\n7) Diritti utente\nL’utente può revocare il consenso in qualsiasi momento da questo pannello. Informative e diritti devono essere riportati anche nella privacy policy pubblica (GDPR Art. 13 e Artt. 15-17).\n\n8) Disclaimer medico\nNon viene fornita diagnosi medica o clinica. Un risultato rosso indica marcatori di rischio potenziale, non un disturbo confermato.\n\n9) Nota compliance\nQuesto testo in-app non costituisce consulenza legale. Prima del rilascio pubblico è necessaria revisione legale completa.",
+  "withdrawConsent": "Revoca consenso",
+  "keepDisabled": "Lascia disabilitato",
+  "accept": "Accetta",
+  "signalBalance": "Equilibrio",
+  "signalVulnerability": "Vulnerabilità",
+  "signalPotentialPathology": "Potenziale patologia",
+  "overallGreenTitle": "PROFILO VERDE - Equilibrio e serenità",
+  "overallOrangeTitle": "PROFILO ARANCIONE - Tensione e fragilità emotiva",
+  "overallRedTitle": "PROFILO ROSSO - Tratti potenzialmente patologici",
+  "proUnlockedFullDataAvailable": "Pro sbloccato. Dati completi disponibili.",
+  "storeProductUnavailableNow": "Prodotto store non disponibile.",
+  "whatsappLabel": "WhatsApp",
+  "telegramLabel": "Telegram",
+  "tiktokLabel": "TikTok",
+  "instagramLabel": "Instagram",
+  "facebookLabel": "Facebook",
+  "moreLabel": "Altro"
+}
+

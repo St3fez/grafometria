@@ -1,0 +1,213 @@
+{
+  "@@locale": "fr",
+  "appTitle": "HandwritingAnalysis",
+  "languageTooltip": "Langue",
+  "languageSystemDefault": "Par defaut du systeme",
+  "privacyTooltip": "Confidentialite et avertissement",
+  "loadingPrivacySettings": "Chargement des parametres de confidentialite...",
+  "tickConsentBeforeContinuing": "Cochez le consentement avant de continuer.",
+  "consentSavedCameraEnabled": "Consentement enregistre. Capture camera activee.",
+  "analyzingPreparingResultPopup": "Analyse de l'ecriture et preparation de la fenetre de resultat...",
+  "freeModeSummary": "Mode gratuit : profil de base avec publicite. Mode Pro : rapport complet pour {price}.",
+  "@freeModeSummary": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "headerSubtitle": "Analyse via camera en direct. Resultat en fenetre moderne avec indicateurs type feu tricolore.",
+  "captureLivePhoto": "Capturer une photo en direct",
+  "trustLiveCameraOnly": "Camera en direct uniquement",
+  "trustNoGalleryOrFile": "Aucune galerie ni fichier",
+  "trustTemporaryCleanup": "Suppression temporaire des photos",
+  "consentRequiredTitle": "Consentement confidentialite et avertissement requis",
+  "consentRequiredBody": "Consultez la confidentialite/l'avertissement avant la premiere analyse. L'app est educative et non diagnostique.",
+  "consentCheckbox": "J'ai lu et j'accepte la politique.",
+  "readPolicy": "Lire la politique",
+  "acceptAndContinue": "Accepter et continuer",
+  "noCaptureYet": "Aucune capture pour le moment. Utilisez la camera en direct.",
+  "resultPopupReadyTitle": "Votre fenetre de resultat est prete",
+  "proPopupReadyTitle": "Votre rapport Pro en fenetre est pret",
+  "resultPopupBody": "Ouvrez la fenetre a onglets pour les sections Gratuit, Pro et Partage.",
+  "openResultPopup": "Ouvrir le resultat",
+  "share": "Partager",
+  "purchaseStreamError": "Erreur du flux d'achat.",
+  "storeProductUnavailable": "Produit boutique indisponible. Configurez d'abord \"{productId}\".",
+  "@storeProductUnavailable": {
+    "placeholders": {
+      "productId": {}
+    }
+  },
+  "openingSecureCheckout": "Ouverture du paiement securise...",
+  "proReportUnlocked": "Rapport Pro debloque.",
+  "purchaseFailed": "Echec de l'achat.",
+  "purchaseCanceled": "Achat annule.",
+  "privacyAccepted": "Confidentialite et avertissement acceptes.",
+  "consentWithdrawn": "Consentement retire. Capture desactivee.",
+  "shareMyResult": "Mon resultat HandwritingAnalysis :",
+  "shareConfidenceLine": "Confiance : {label} ({percent}%)",
+  "@shareConfidenceLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {}
+    }
+  },
+  "shareDetailedMetricsHeader": "Metriques detaillees :",
+  "shareProHint": "Le debloquage Pro revele tous les details quantitatifs.",
+  "shareTryApp": "Essayez HandwritingAnalysis.",
+  "graphometryResult": "Resultat HandwritingAnalysis",
+  "reliabilityLine": "Fiabilite : {label} ({percent}%)",
+  "@reliabilityLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {}
+    }
+  },
+  "confidenceHigh": "Elevee",
+  "confidenceMedium": "Moyenne",
+  "confidenceLow": "Faible",
+  "photoQualityShortLine": "Qualite photo : {percent}%",
+  "@photoQualityShortLine": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "overallSummaryGreen": "Profil general : personnalite centree, serenite emotionnelle et bonne autoregulation.",
+  "overallSummaryOrange": "Profil general : personnalite sensible avec tension interne et fluctuations emotionnelles.",
+  "overallSummaryRed": "Profil general : des signaux de dysregulation emotionnelle marquee et de traits psychologiques a haut risque emergent.",
+  "overallDescriptionGreen": "Profil vert : les traits suggerent une stabilite affective, un controle des impulsions equilibre et une adaptation efficace au stress quotidien.",
+  "overallDescriptionOrange": "Profil orange : les traits suggerent une forte sensibilite, une charge interne accrue et une vulnerabilite sous pression ; la reactivite relationnelle peut augmenter en phase de stress.",
+  "overallDescriptionRed": "Profil rouge : les traits suggerent des patterns persistants de souffrance psychologique, une possible dysregulation affective et des marqueurs potentiellement pathologiques. Si ce profil se repete, recherchez une evaluation professionnelle.",
+  "quickSummaryCompact": "{state} Tendance de baseline : {baseline}. Style relationnel : {slant}.",
+  "@quickSummaryCompact": {
+    "placeholders": {
+      "state": {},
+      "baseline": {},
+      "slant": {}
+    }
+  },
+  "quickBaselineUp": "ascendante",
+  "quickBaselineDown": "descendante",
+  "quickBaselineStable": "stable",
+  "quickSlantRight": "plus ouvert",
+  "quickSlantLeft": "plus reserve",
+  "quickSlantNeutral": "equilibre",
+  "detailedSpacingNarrative": "Le ratio d'espacement {value} suggere {tendency}.",
+  "@detailedSpacingNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedSpacingAutonomy": "une tendance plus forte a l'autonomie",
+  "detailedSpacingCloseness": "une tendance plus forte a la proximite relationnelle",
+  "detailedSizeNarrative": "La variance de taille {value} suggere {tendency}.",
+  "@detailedSizeNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedSizeFluctuating": "une constance attentionnelle fluctuante",
+  "detailedSizeStable": "un rythme attentionnel stable",
+  "detailedPenLiftNarrative": "La frequence des leves de stylo {value} suggere {tendency}.",
+  "@detailedPenLiftNarrative": {
+    "placeholders": {
+      "value": {},
+      "tendency": {}
+    }
+  },
+  "detailedPenLiftSegmented": "une sequenciation cognitive segmentee",
+  "detailedPenLiftFluid": "une continuite cognitive fluide",
+  "detailedInterpretationNote": "Note d'interpretation : cette lecture est un screening psychologique et ne constitue pas un diagnostic medical ou psychiatrique.",
+  "metricBaselineName": "Angle de baseline",
+  "metricBaselineExplanation": "Mesure la stabilite de ligne et la derive directionnelle de l'echantillon.",
+  "metricBaselineRule": "Regle signal: Vert <= 4.5°, Orange <= 9°, Rouge > 9°.",
+  "metricSlantName": "Angle d'inclinaison",
+  "metricSlantExplanation": "Capte l'ouverture emotionnelle versus un style de communication plus defensif.",
+  "metricSlantRule": "Regle signal: Vert <= 12.5°, Orange <= 20°, Rouge > 20°.",
+  "metricPressureName": "Indice de pression",
+  "metricPressureExplanation": "Estime la force expressive via densite et obscurite du trait.",
+  "metricPressureRule": "Regle signal: Vert 0.34-0.72, Orange 0.24-0.82, Rouge hors plage.",
+  "metricSpacingName": "Ratio d'espacement",
+  "metricSpacingExplanation": "Mesure l'equilibre moyen des espaces entre groupes de traits.",
+  "metricSpacingRule": "Regle signal: Vert 0.82-1.55, Orange 0.60-1.95, Rouge hors plage.",
+  "metricSizeVarianceName": "Variance de taille",
+  "metricSizeVarianceExplanation": "Reflete la coherence de hauteur des lettres et du rythme visuel.",
+  "metricSizeVarianceRule": "Regle signal: Vert <= 0.42, Orange <= 0.66, Rouge > 0.66.",
+  "metricPenLiftsName": "Leves de stylo",
+  "metricPenLiftsExplanation": "Approxime le caractere segmente ou continu de la sequence motrice.",
+  "metricPenLiftsRule": "Regle signal: Vert <= 0.46, Orange <= 0.70, Rouge > 0.70.",
+  "qualityGateTitle": "Controle qualite de capture",
+  "qualityGateBody": "Certaines conditions de capture reduisent la fiabilite. Ameliorez la photo avant d'interpreter les details.",
+  "qualityGateScoreLine": "Qualite de capture: {percent}%",
+  "@qualityGateScoreLine": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "qualityHintCoverageLow": "La zone d'ecriture est trop petite dans le cadrage.",
+  "qualityHintContrastLow": "Contraste faible: augmentez la lumiere et evitez les ombres.",
+  "qualityHintSharpnessLow": "Image peu nette: stabilisez la camera et refaites la mise au point.",
+  "qualityHintGeneric": "Un ou plusieurs facteurs qualite sont sous le niveau optimal.",
+  "qualityRetakeHint": "Conseil: reprenez de plus pres avec lumiere uniforme et sans reflets.",
+  "scienceRefsTitle": "References scientifiques",
+  "scienceRefsDisclaimer": "References a but informatif. L'app ne fournit pas de diagnostic.",
+  "openSource": "Ouvrir la source",
+  "freeProTeaserTitle": "Vous voulez l'analyse detaillee complete ?",
+  "freeProTeaserBody": "Debloquez Pro pour obtenir le profil psychologique complet, tous les marqueurs quantitatifs et un resultat sans pub pour {price}.",
+  "@freeProTeaserBody": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "freeProTeaserButton": "Voir l'offre Pro",
+  "proMoreIndicatorsHint": "Fonctions Pro : debloquez {count} indicateurs supplementaires et l'analyse detaillee complete.",
+  "@proMoreIndicatorsHint": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "errorUnsupportedImageFormat": "Format d'image non pris en charge.",
+  "errorImageTooSmall": "Image trop petite. Prenez une photo plus proche et plus nette.",
+  "errorNotEnoughHandwriting": "Ecriture insuffisante detectee. Reessayez avec un meilleur cadrage.",
+  "tabFree": "Gratuit",
+  "tabPro": "Pro",
+  "tabShare": "Partager",
+  "legendTitle": "Legende psychologique du feu tricolore",
+  "legendBody": "Vert : equilibre et serenite.\nOrange : tension emotionnelle/vulnerabilite.\nRouge : traits potentiellement pathologiques (signal de depistage).",
+  "unlockFullPsychProfile": "Debloquer le profil psychologique complet",
+  "unlockFullPsychProfileBody": "Vous avez deja termine l'analyse. Debloquez l'interpretation psychologique complete, la signification du feu tricolore et tous les marqueurs quantitatifs.",
+  "valuePsychReport": "Rapport psychologique complet",
+  "valueRiskMarkers": "Marqueurs de risque potentiels",
+  "valueNoAdsThisResult": "Sans publicites pour ce resultat",
+  "processing": "Traitement...",
+  "unlockProForPrice": "Debloquer Pro pour {price}",
+  "@unlockProForPrice": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "storeSetupPending": "Configuration du produit boutique en attente.",
+  "sharePanelText": "Partagez sur WhatsApp, Telegram, TikTok, Instagram, Facebook ou via le partage systeme.",
+  "openPrivacyDisclaimer": "Ouvrir confidentialite et avertissement",
+  "policyTitle": "Confidentialite et Avertissement",
+  "policyBody": "Mise a jour : 4 mars 2026\n\n1) Finalite et base legale\nUsage educatif uniquement. Le traitement repose sur le consentement explicite (RGPD Art. 6(1)(a) et, si applicable, Art. 9(2)(a)).\n\n2) Minimisation des donnees\nCamera en direct uniquement. Pas de galerie ni de fichier. Les photos temporaires sont supprimees dans la mesure du possible. Les principes de minimisation et de limitation de finalite sont appliques (RGPD Art. 5 et Art. 25).\n\n3) Limites du profilage\nN'utilisez pas cette application pour des decisions d'embauche, de credit, d'assurance, juridiques ou a fort impact. Aucune decision ne doit etre prise uniquement sur cette sortie automatisee (RGPD Art. 22).\n\n4) Traitement par des tiers\nLe mode gratuit utilise des SDK publicitaires. Le debloquage Pro utilise la facturation du store. Les fournisseurs peuvent traiter des identifiants appareil/transaction.\n\n5) Transparence\nLes utilisateurs sont informes qu'ils interagissent avec du contenu genere par IA (AI Act Art. 50, principe de transparence).\n\n6) Limites d'usage interdit\nL'application ne doit pas etre utilisee a des fins manipulatoires ou nuisibles de type social scoring (AI Act Art. 5, pratiques interdites).\n\n7) Droits des utilisateurs\nLes utilisateurs peuvent retirer leur consentement a tout moment depuis ce panneau. Les obligations d'information et les droits doivent figurer dans l'avis de confidentialite du store (RGPD Art. 13 et Arts. 15-17).\n\n8) Avertissement medical\nAucun diagnostic medical ou clinique n'est fourni. Un resultat rouge indique des marqueurs de risque potentiels, pas un trouble confirme.\n\n9) Note de conformite\nCe texte in-app ne constitue pas un conseil juridique. Effectuez une revision juridique complete avant publication.",
+  "withdrawConsent": "Retirer le consentement",
+  "keepDisabled": "Laisser desactive",
+  "accept": "Accepter",
+  "signalBalance": "Equilibre",
+  "signalVulnerability": "Vulnerabilite",
+  "signalPotentialPathology": "Pathologie potentielle",
+  "overallGreenTitle": "PROFIL VERT - Equilibre et serenite",
+  "overallOrangeTitle": "PROFIL ORANGE - Tension emotionnelle et fragilite",
+  "overallRedTitle": "PROFIL ROUGE - Traits potentiellement pathologiques",
+  "proUnlockedFullDataAvailable": "Pro debloque. Donnees completes disponibles.",
+  "storeProductUnavailableNow": "Produit boutique indisponible.",
+  "whatsappLabel": "WhatsApp",
+  "telegramLabel": "Telegram",
+  "tiktokLabel": "TikTok",
+  "instagramLabel": "Instagram",
+  "facebookLabel": "Facebook",
+  "moreLabel": "Plus"
+}
+
