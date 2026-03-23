@@ -18,7 +18,10 @@
         </provider>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-2298338132778992~7100989410" />
+        <meta-data
+            android:name="com.google.android.play.largest_release_audience.CLOSED_TESTING"
+            android:value="" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

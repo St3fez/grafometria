@@ -5,6 +5,13 @@ import 'package:image/image.dart' as img;
 
 import '../domain/writer_profile.dart';
 
+const _unsupportedImageFormatMessage = 'Unsupported image format.';
+const _imageTooSmallMessage =
+    'Image too small. Capture a closer and sharper photo.';
+const _notEnoughHandwritingMessage =
+    'Not enough handwriting detected. Try with better framing.';
+const _handwritingRequiredMessage = 'Photograph handwritten text and retry.';
+
 class GrafometryAnalyzer {
   Future<WriterProfile> analyze(Uint8List imageBytes) async {
     final profileMap = await compute(_analyzeImageBytes, imageBytes);
@@ -15,7 +22,7 @@ class GrafometryAnalyzer {
 Map<String, double> _analyzeImageBytes(Uint8List bytes) {
   final decoded = img.decodeImage(bytes);
   if (decoded == null) {
-    throw const FormatException('Unsupported image format.');
+    throw const FormatException(_unsupportedImageFormatMessage);
   }
 
   final targetWidth = decoded.width > 384 ? 384 : decoded.width;
@@ -27,9 +34,7 @@ Map<String, double> _analyzeImageBytes(Uint8List bytes) {
   final totalPixels = width * height;
 
   if (totalPixels < 10_000) {
-    throw const FormatException(
-      'Image too small. Capture a closer and sharper photo.',
-    );
+    throw const FormatException(_imageTooSmallMessage);
   }
 
   final histogram = List<int>.filled(256, 0);
@@ -38,6 +43,11 @@ Map<String, double> _analyzeImageBytes(Uint8List bytes) {
       final lum = gray.getPixel(x, y).r.toInt();
       histogram[lum]++;
     }
+  }
+
+  final luminanceStats = _computeLuminanceStats(histogram, totalPixels);
+  if (luminanceStats.isLowInformationFrame) {
+    throw const FormatException(_handwritingRequiredMessage);
   }
 
   final threshold = _otsuThreshold(histogram, totalPixels);
@@ -58,10 +68,26 @@ Map<String, double> _analyzeImageBytes(Uint8List bytes) {
   }
 
   final inkRatio = inkPixels / totalPixels;
+  final rowInkCoverage = _computeRowInkCoverage(ink, width, height);
+  final handwritingStats = _computeHandwritingStats(ink, width, height);
+
   if (inkRatio < 0.01) {
-    throw const FormatException(
-      'Not enough handwriting detected. Try with better framing.',
-    );
+    if (handwritingStats.isLikelySparsePrintedText) {
+      throw const FormatException(_handwritingRequiredMessage);
+    }
+    throw const FormatException(_notEnoughHandwritingMessage);
+  }
+
+  if (inkRatio > 0.42) {
+    throw const FormatException(_handwritingRequiredMessage);
+  }
+
+  if (rowInkCoverage > 0.82 && inkRatio > 0.24) {
+    throw const FormatException(_handwritingRequiredMessage);
+  }
+
+  if (handwritingStats.isLikelyNonHandwriting) {
+    throw const FormatException(_handwritingRequiredMessage);
   }
 
   final columnInk = List<int>.filled(width, 0);
@@ -171,6 +197,208 @@ int _otsuThreshold(List<int> histogram, int totalPixels) {
   }
 
   return threshold;
+}
+
+_LuminanceStats _computeLuminanceStats(List<int> histogram, int totalPixels) {
+  if (totalPixels <= 0) {
+    return const _LuminanceStats(mean: 0, stdDev: 0, dynamicRange: 0);
+  }
+
+  var mean = 0.0;
+  for (var i = 0; i < histogram.length; i++) {
+    mean += i * histogram[i];
+  }
+  mean /= totalPixels;
+
+  var variance = 0.0;
+  for (var i = 0; i < histogram.length; i++) {
+    final delta = i - mean;
+    variance += delta * delta * histogram[i];
+  }
+  variance /= totalPixels;
+
+  var low = 0;
+  while (low < histogram.length && histogram[low] == 0) {
+    low++;
+  }
+
+  var high = histogram.length - 1;
+  while (high >= 0 && histogram[high] == 0) {
+    high--;
+  }
+
+  final dynamicRange = high < low ? 0.0 : (high - low).toDouble();
+
+  return _LuminanceStats(
+    mean: mean,
+    stdDev: math.sqrt(variance),
+    dynamicRange: dynamicRange,
+  );
+}
+
+double _computeRowInkCoverage(List<Uint8List> ink, int width, int height) {
+  if (height == 0) {
+    return 0.0;
+  }
+
+  var rowsWithInk = 0;
+  for (var y = 0; y < height; y++) {
+    for (var x = 0; x < width; x++) {
+      if (ink[y][x] == 1) {
+        rowsWithInk++;
+        break;
+      }
+    }
+  }
+
+  return rowsWithInk / height;
+}
+
+_HandwritingStats _computeHandwritingStats(
+  List<Uint8List> ink,
+  int width,
+  int height,
+) {
+  if (width <= 0 || height <= 0) {
+    return const _HandwritingStats.empty();
+  }
+
+  final visited = List<Uint8List>.generate(height, (_) => Uint8List(width));
+  final components = <_InkComponent>[];
+
+  for (var y = 0; y < height; y++) {
+    for (var x = 0; x < width; x++) {
+      if (ink[y][x] == 0 || visited[y][x] == 1) {
+        continue;
+      }
+
+      final queue = <int>[y * width + x];
+      visited[y][x] = 1;
+      var head = 0;
+      var area = 0;
+      var minX = x;
+      var maxX = x;
+      var minY = y;
+      var maxY = y;
+
+      while (head < queue.length) {
+        final index = queue[head++];
+        final currentX = index % width;
+        final currentY = index ~/ width;
+
+        area++;
+        if (currentX < minX) {
+          minX = currentX;
+        }
+        if (currentX > maxX) {
+          maxX = currentX;
+        }
+        if (currentY < minY) {
+          minY = currentY;
+        }
+        if (currentY > maxY) {
+          maxY = currentY;
+        }
+
+        for (var dy = -1; dy <= 1; dy++) {
+          for (var dx = -1; dx <= 1; dx++) {
+            if (dx == 0 && dy == 0) {
+              continue;
+            }
+            final nextX = currentX + dx;
+            final nextY = currentY + dy;
+            if (nextX < 0 ||
+                nextX >= width ||
+                nextY < 0 ||
+                nextY >= height ||
+                ink[nextY][nextX] == 0 ||
+                visited[nextY][nextX] == 1) {
+              continue;
+            }
+            visited[nextY][nextX] = 1;
+            queue.add(nextY * width + nextX);
+          }
+        }
+      }
+
+      final componentWidth = maxX - minX + 1;
+      final componentHeight = maxY - minY + 1;
+      if (area >= 8 && componentWidth >= 2 && componentHeight >= 2) {
+        components.add(
+          _InkComponent(
+            area: area,
+            width: componentWidth,
+            height: componentHeight,
+          ),
+        );
+      }
+    }
+  }
+
+  if (components.isEmpty) {
+    return const _HandwritingStats.empty();
+  }
+
+  final componentHeights = <double>[];
+  final componentFillRatios = <double>[];
+  var smallComponents = 0;
+  var wideComponents = 0;
+  for (final component in components) {
+    componentHeights.add(component.height.toDouble());
+    componentFillRatios.add(component.fillRatio);
+    if (component.area < 30 || component.height < 6) {
+      smallComponents++;
+    }
+    if (component.aspectRatio >= 1.35) {
+      wideComponents++;
+    }
+  }
+
+  var horizontalLinks = 0;
+  var verticalLinks = 0;
+  var diagonalLinks = 0;
+  for (var y = 0; y < height; y++) {
+    for (var x = 0; x < width; x++) {
+      if (ink[y][x] == 0) {
+        continue;
+      }
+      if (x + 1 < width && ink[y][x + 1] == 1) {
+        horizontalLinks++;
+      }
+      if (y + 1 < height && ink[y + 1][x] == 1) {
+        verticalLinks++;
+      }
+      if (x + 1 < width && y + 1 < height && ink[y + 1][x + 1] == 1) {
+        diagonalLinks++;
+      }
+      if (x > 0 && y + 1 < height && ink[y + 1][x - 1] == 1) {
+        diagonalLinks++;
+      }
+    }
+  }
+
+  final totalLinks = horizontalLinks + verticalLinks + diagonalLinks;
+  final diagonalShare = totalLinks == 0 ? 0.0 : diagonalLinks / totalLinks;
+  final heightVariation = _coefficientOfVariation(componentHeights);
+  final fillVariation = _coefficientOfVariation(componentFillRatios);
+  final smallComponentRatio = smallComponents / components.length;
+  final wideComponentRatio = wideComponents / components.length;
+  final handwritingScore =
+      (heightVariation / 0.35).clamp(0.0, 1.0) * 0.32 +
+      (fillVariation / 0.30).clamp(0.0, 1.0) * 0.22 +
+      wideComponentRatio.clamp(0.0, 1.0) * 0.18 +
+      (diagonalShare / 0.26).clamp(0.0, 1.0) * 0.18 +
+      (1.0 - smallComponentRatio).clamp(0.0, 1.0) * 0.10;
+
+  return _HandwritingStats(
+    componentCount: components.length,
+    handwritingScore: handwritingScore,
+    heightVariation: heightVariation,
+    fillVariation: fillVariation,
+    diagonalShare: diagonalShare,
+    smallComponentRatio: smallComponentRatio,
+    wideComponentRatio: wideComponentRatio,
+  );
 }
 
 double _computeBaselineAngle(List<double> x, List<double> y) {
@@ -384,4 +612,108 @@ double _computeQualityGateScore({
 }) {
   return (coverageIndex * 0.45 + contrastIndex * 0.25 + sharpnessIndex * 0.30)
       .clamp(0.0, 1.0);
+}
+
+class _LuminanceStats {
+  const _LuminanceStats({
+    required this.mean,
+    required this.stdDev,
+    required this.dynamicRange,
+  });
+
+  final double mean;
+  final double stdDev;
+  final double dynamicRange;
+
+  bool get isLowInformationFrame {
+    final tooUniform = dynamicRange < 28;
+    final tooDark = mean < 36 && dynamicRange < 52;
+    return tooUniform || tooDark;
+  }
+}
+
+class _InkComponent {
+  const _InkComponent({
+    required this.area,
+    required this.width,
+    required this.height,
+  });
+
+  final int area;
+  final int width;
+  final int height;
+
+  double get aspectRatio => width / math.max(1, height);
+
+  double get fillRatio => area / math.max(1, width * height);
+}
+
+class _HandwritingStats {
+  const _HandwritingStats({
+    required this.componentCount,
+    required this.handwritingScore,
+    required this.heightVariation,
+    required this.fillVariation,
+    required this.diagonalShare,
+    required this.smallComponentRatio,
+    required this.wideComponentRatio,
+  });
+
+  const _HandwritingStats.empty()
+    : componentCount = 0,
+      handwritingScore = 0,
+      heightVariation = 0,
+      fillVariation = 0,
+      diagonalShare = 0,
+      smallComponentRatio = 1,
+      wideComponentRatio = 0;
+
+  final int componentCount;
+  final double handwritingScore;
+  final double heightVariation;
+  final double fillVariation;
+  final double diagonalShare;
+  final double smallComponentRatio;
+  final double wideComponentRatio;
+
+  bool get isLikelyNonHandwriting {
+    if (componentCount == 0) {
+      return true;
+    }
+
+    if (componentCount >= 8 && handwritingScore < 0.48) {
+      return true;
+    }
+
+    if (componentCount >= 10 &&
+        heightVariation < 0.26 &&
+        diagonalShare < 0.22 &&
+        wideComponentRatio < 0.45) {
+      return true;
+    }
+
+    if (componentCount >= 20 &&
+        heightVariation < 0.10 &&
+        wideComponentRatio < 0.12) {
+      return true;
+    }
+
+    return componentCount >= 5 &&
+        heightVariation < 0.18 &&
+        fillVariation < 0.18 &&
+        diagonalShare < 0.16 &&
+        wideComponentRatio < 0.32 &&
+        smallComponentRatio > 0.42;
+  }
+
+  bool get isLikelySparsePrintedText {
+    if (componentCount < 3 || componentCount > 12) {
+      return false;
+    }
+
+    return heightVariation < 0.18 &&
+        fillVariation < 0.48 &&
+        wideComponentRatio < 0.20 &&
+        smallComponentRatio < 0.75;
+  }
 }

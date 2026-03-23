@@ -32,9 +32,7 @@ void main() {
       expect(find.textContaining('Free mode:'), findsNothing);
     });
 
-    testWidgets('stays stable on compact screens in free mode', (
-      tester,
-    ) async {
+    testWidgets('stays stable on compact screens in free mode', (tester) async {
       tester.view.devicePixelRatio = 1.0;
       tester.view.physicalSize = const Size(320, 640);
       addTearDown(() {
@@ -74,7 +72,9 @@ void main() {
       expect(l10n.proMoreIndicatorsHint(metrics.length - 3), contains('3'));
     });
 
-    testWidgets('keeps overall free summaries concise per signal', (tester) async {
+    testWidgets('keeps overall free summaries concise per signal', (
+      tester,
+    ) async {
       final l10n = await _resolveL10n(tester, const Locale('it'));
       final summaries = [
         _greenProfile().overallStateSummary(l10n),
@@ -85,6 +85,39 @@ void main() {
       for (final summary in summaries) {
         expect(summary.length, lessThanOrEqualTo(75));
       }
+    });
+
+    testWidgets('keeps privacy sheet inside safe area', (tester) async {
+      tester.view.devicePixelRatio = 1.0;
+      tester.view.physicalSize = const Size(390, 844);
+      tester.view.padding = const FakeViewPadding(top: 48, bottom: 24);
+      tester.view.viewPadding = const FakeViewPadding(top: 48, bottom: 24);
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+        tester.view.resetPadding();
+        tester.view.resetViewPadding();
+      });
+
+      await tester.pumpWidget(
+        _localizedHost(
+          locale: const Locale('it'),
+          child: const AnalyzerPage(
+            enableMonetization: false,
+            onLocaleChanged: _noopLocaleChange,
+            localeOverrideCode: 'it',
+          ),
+        ),
+      );
+      await tester.pump(const Duration(milliseconds: 300));
+
+      await tester.tap(find.byIcon(Icons.policy_outlined));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+
+      final titleTop = tester.getTopLeft(find.text('Privacy e Disclaimer')).dy;
+      expect(titleTop, greaterThanOrEqualTo(40));
+      expect(tester.takeException(), isNull);
     });
   });
 }
@@ -98,7 +131,10 @@ Widget _localizedHost({required Locale locale, required Widget child}) {
   );
 }
 
-Future<AppLocalizations> _resolveL10n(WidgetTester tester, Locale locale) async {
+Future<AppLocalizations> _resolveL10n(
+  WidgetTester tester,
+  Locale locale,
+) async {
   AppLocalizations? l10n;
   await tester.pumpWidget(
     MaterialApp(

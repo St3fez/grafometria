@@ -368,37 +368,37 @@ abstract class AppLocalizations {
   /// No description provided for @overallSummaryGreen.
   ///
   /// In en, this message translates to:
-  /// **'Overall profile: centered personality, emotional steadiness, and good self-regulation.'**
+  /// **'Regular sample: balanced graphic pattern and no strong load markers.'**
   String get overallSummaryGreen;
 
   /// No description provided for @overallSummaryOrange.
   ///
   /// In en, this message translates to:
-  /// **'Overall profile: sensitive personality with inner tension and emotional fluctuations.'**
+  /// **'Variable sample: stress sensitivity and tension should be read cautiously.'**
   String get overallSummaryOrange;
 
   /// No description provided for @overallSummaryRed.
   ///
   /// In en, this message translates to:
-  /// **'Overall profile: marked emotional dysregulation and high-risk psychological traits are emerging.'**
+  /// **'Heavier or discontinuous sample: possible fatigue and tension markers.'**
   String get overallSummaryRed;
 
   /// No description provided for @overallDescriptionGreen.
   ///
   /// In en, this message translates to:
-  /// **'Green profile: traits suggest stable affect, balanced impulse control, and adaptive coping under everyday stress.'**
+  /// **'Green profile: this sample sits in the more regular range, with steadier rhythm, contained activation, and an overall more ordered visual execution.'**
   String get overallDescriptionGreen;
 
   /// No description provided for @overallDescriptionOrange.
   ///
   /// In en, this message translates to:
-  /// **'Orange profile: traits suggest high sensitivity, increased internal load, and vulnerability under pressure; relational reactivity may rise in stressful phases.'**
+  /// **'Orange profile: this sample shows more variability, possible sensitivity to situational pressure, and rhythm fluctuations that should be contextualized with other observations.'**
   String get overallDescriptionOrange;
 
   /// No description provided for @overallDescriptionRed.
   ///
   /// In en, this message translates to:
-  /// **'Red profile: traits suggest persistent psychological distress patterns, possible affective dysregulation, and potentially pathological markers. If this pattern repeats, seek professional evaluation.'**
+  /// **'Red profile: this sample shows higher graphic load or marked discontinuity. These markers may accompany tension, fatigue, or unstable execution, but they are not a diagnosis.'**
   String get overallDescriptionRed;
 
   /// No description provided for @quickSummaryCompact.
@@ -497,11 +497,197 @@ abstract class AppLocalizations {
   /// **'fluid cognitive continuity'**
   String get detailedPenLiftFluid;
 
+  /// No description provided for @psychologicalSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Cautious psychological reading: baseline {baseline}, slant {slant}, pressure suggests {pressure}, spacing is compatible with {spacing}, and the writing rhythm looks closer to {rhythm}.'**
+  String psychologicalSnapshot(Object baseline, Object slant, Object pressure, Object spacing, Object rhythm);
+
+  /// No description provided for @psychPressureHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'higher internal activation'**
+  String get psychPressureHigh;
+
+  /// No description provided for @psychPressureBalanced.
+  ///
+  /// In en, this message translates to:
+  /// **'fairly balanced tonic modulation'**
+  String get psychPressureBalanced;
+
+  /// No description provided for @psychPressureLow.
+  ///
+  /// In en, this message translates to:
+  /// **'contained activation or lighter stroke'**
+  String get psychPressureLow;
+
+  /// No description provided for @confidenceAdviceHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Reliability is good for an exploratory reading, but the image remains only a visual clue.'**
+  String get confidenceAdviceHigh;
+
+  /// No description provided for @confidenceAdviceMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Reliability is moderate: use the result as a prompt, not as a conclusion.'**
+  String get confidenceAdviceMedium;
+
+  /// No description provided for @confidenceAdviceLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Reliability is low: retake the photo and compare multiple samples before interpreting it.'**
+  String get confidenceAdviceLow;
+
+  /// No description provided for @wellbeingSuggestionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wellbeing suggestion'**
+  String get wellbeingSuggestionTitle;
+
+  /// No description provided for @wellbeingSuggestionGreen.
+  ///
+  /// In en, this message translates to:
+  /// **'If the sample feels coherent, protect that balance with simple routines: regular sleep, short breaks, and slower writing without hurry.'**
+  String get wellbeingSuggestionGreen;
+
+  /// No description provided for @wellbeingSuggestionOrange.
+  ///
+  /// In en, this message translates to:
+  /// **'If tension feels recurrent, try short breaks, slower breathing, less haste, and a few lines of journaling to discharge some load.'**
+  String get wellbeingSuggestionOrange;
+
+  /// No description provided for @wellbeingSuggestionRed.
+  ///
+  /// In en, this message translates to:
+  /// **'If these signs repeat across samples or with real distress, reduce overload, protect sleep and breaks, and consider talking to a qualified professional.'**
+  String get wellbeingSuggestionRed;
+
   /// No description provided for @detailedInterpretationNote.
   ///
   /// In en, this message translates to:
-  /// **'Interpretation note: this is a screening-style psychological reading, not a medical or psychiatric diagnosis.'**
+  /// **'Interpretation note: graphomotor markers may describe gesture quality, but personality graphology lacks robust validation; this reading remains exploratory and non-diagnostic.'**
   String get detailedInterpretationNote;
+
+  /// No description provided for @psychCuesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exploratory psychological cues'**
+  String get psychCuesTitle;
+
+  /// No description provided for @psychCuesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'These are orientation labels derived from pressure, regularity, and rhythm of the gesture. They make the profile feel more psychological, but they do not define the person with certainty.'**
+  String get psychCuesBody;
+
+  /// No description provided for @psychCueSerenity.
+  ///
+  /// In en, this message translates to:
+  /// **'Serenity'**
+  String get psychCueSerenity;
+
+  /// No description provided for @psychCueSerenityDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'The gesture looks well regulated, with contained load and fairly orderly continuity.'**
+  String get psychCueSerenityDetail;
+
+  /// No description provided for @psychCueActivation.
+  ///
+  /// In en, this message translates to:
+  /// **'Activation'**
+  String get psychCueActivation;
+
+  /// No description provided for @psychCueActivationDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Energy is present but not extreme; the sample should be read in light of context and moment.'**
+  String get psychCueActivationDetail;
+
+  /// No description provided for @psychCueStress.
+  ///
+  /// In en, this message translates to:
+  /// **'Stress'**
+  String get psychCueStress;
+
+  /// No description provided for @psychCueStressDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Higher pressure or fragmentation can accompany situational tension and overload.'**
+  String get psychCueStressDetail;
+
+  /// No description provided for @psychCueStability.
+  ///
+  /// In en, this message translates to:
+  /// **'Stability'**
+  String get psychCueStability;
+
+  /// No description provided for @psychCueStabilityDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Line and proportions stay fairly coherent, suggesting a more stable gesture setting.'**
+  String get psychCueStabilityDetail;
+
+  /// No description provided for @psychCueSensitivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensitivity'**
+  String get psychCueSensitivity;
+
+  /// No description provided for @psychCueSensitivityDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Small oscillations in the gesture may reflect contextual reactivity or momentary variability.'**
+  String get psychCueSensitivityDetail;
+
+  /// No description provided for @psychCueDiscontinuity.
+  ///
+  /// In en, this message translates to:
+  /// **'Discontinuity'**
+  String get psychCueDiscontinuity;
+
+  /// No description provided for @psychCueDiscontinuityDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked shifts in the gesture can indicate a less regular sample pattern.'**
+  String get psychCueDiscontinuityDetail;
+
+  /// No description provided for @psychCueFluidity.
+  ///
+  /// In en, this message translates to:
+  /// **'Fluidity'**
+  String get psychCueFluidity;
+
+  /// No description provided for @psychCueFluidityDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'The writing sequence appears fairly continuous and only lightly interrupted.'**
+  String get psychCueFluidityDetail;
+
+  /// No description provided for @psychCueVariability.
+  ///
+  /// In en, this message translates to:
+  /// **'Variability'**
+  String get psychCueVariability;
+
+  /// No description provided for @psychCueVariabilityDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'The rhythm alternates between more continuous passages and more controlled or segmented ones.'**
+  String get psychCueVariabilityDetail;
+
+  /// No description provided for @psychCueFragmentation.
+  ///
+  /// In en, this message translates to:
+  /// **'Fragmentation'**
+  String get psychCueFragmentation;
+
+  /// No description provided for @psychCueFragmentationDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'The rhythm appears more interrupted or broken, with lower motor continuity.'**
+  String get psychCueFragmentationDetail;
 
   /// No description provided for @metricBaselineName.
   ///
@@ -518,7 +704,7 @@ abstract class AppLocalizations {
   /// No description provided for @metricBaselineRule.
   ///
   /// In en, this message translates to:
-  /// **'Signal rule: Green <= 4.5°, Orange <= 9°, Red > 9°.'**
+  /// **'Signal rule: Green <= 4.0°, Orange <= 8.1°, Red > 8.1°.'**
   String get metricBaselineRule;
 
   /// No description provided for @metricSlantName.
@@ -536,7 +722,7 @@ abstract class AppLocalizations {
   /// No description provided for @metricSlantRule.
   ///
   /// In en, this message translates to:
-  /// **'Signal rule: Green <= 12.5°, Orange <= 20°, Red > 20°.'**
+  /// **'Signal rule: Green <= 11.3°, Orange <= 18.0°, Red > 18.0°.'**
   String get metricSlantRule;
 
   /// No description provided for @metricPressureName.
@@ -554,7 +740,7 @@ abstract class AppLocalizations {
   /// No description provided for @metricPressureRule.
   ///
   /// In en, this message translates to:
-  /// **'Signal rule: Green 0.34-0.72, Orange 0.24-0.82, Red outside range.'**
+  /// **'Signal rule: Green 0.38-0.68, Orange 0.28-0.78, Red outside range.'**
   String get metricPressureRule;
 
   /// No description provided for @metricSpacingName.
@@ -572,7 +758,7 @@ abstract class AppLocalizations {
   /// No description provided for @metricSpacingRule.
   ///
   /// In en, this message translates to:
-  /// **'Signal rule: Green 0.82-1.55, Orange 0.60-1.95, Red outside range.'**
+  /// **'Signal rule: Green 0.89-1.48, Orange 0.66-1.82, Red outside range.'**
   String get metricSpacingRule;
 
   /// No description provided for @metricSizeVarianceName.
@@ -590,7 +776,7 @@ abstract class AppLocalizations {
   /// No description provided for @metricSizeVarianceRule.
   ///
   /// In en, this message translates to:
-  /// **'Signal rule: Green <= 0.42, Orange <= 0.66, Red > 0.66.'**
+  /// **'Signal rule: Green <= 0.38, Orange <= 0.59, Red > 0.59.'**
   String get metricSizeVarianceRule;
 
   /// No description provided for @metricPenLiftsName.
@@ -608,7 +794,7 @@ abstract class AppLocalizations {
   /// No description provided for @metricPenLiftsRule.
   ///
   /// In en, this message translates to:
-  /// **'Signal rule: Green <= 0.46, Orange <= 0.70, Red > 0.70.'**
+  /// **'Signal rule: Green <= 0.41, Orange <= 0.63, Red > 0.63.'**
   String get metricPenLiftsRule;
 
   /// No description provided for @qualityGateTitle.
@@ -668,7 +854,7 @@ abstract class AppLocalizations {
   /// No description provided for @scienceRefsDisclaimer.
   ///
   /// In en, this message translates to:
-  /// **'Educational references only. This app does not provide diagnosis.'**
+  /// **'Primary sources across three areas: limits of personality graphology, graphomotor markers in motor-cognitive settings, and modest potential benefits of expressive writing. They do not validate diagnosis or individual psychological profiling from a single sample.'**
   String get scienceRefsDisclaimer;
 
   /// No description provided for @openSource.
@@ -686,7 +872,7 @@ abstract class AppLocalizations {
   /// No description provided for @freeProTeaserBody.
   ///
   /// In en, this message translates to:
-  /// **'Unlock Pro to access complete psychological profile, all quantitative markers, and ad-free result at {price}.'**
+  /// **'Unlock Pro to access a more detailed exploratory reading, all quantitative markers, and an ad-free result at {price}.'**
   String freeProTeaserBody(Object price);
 
   /// No description provided for @freeProTeaserButton.
@@ -719,6 +905,12 @@ abstract class AppLocalizations {
   /// **'Not enough handwriting detected. Try with better framing.'**
   String get errorNotEnoughHandwriting;
 
+  /// No description provided for @errorHandwritingRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Photograph handwritten text. Retry.'**
+  String get errorHandwritingRequired;
+
   /// No description provided for @tabFree.
   ///
   /// In en, this message translates to:
@@ -746,25 +938,25 @@ abstract class AppLocalizations {
   /// No description provided for @legendBody.
   ///
   /// In en, this message translates to:
-  /// **'Green: equilibrium and serenity.\nOrange: emotional tension/vulnerability.\nRed: potentially pathological traits (screening signal).'**
+  /// **'Green: more regular and less loaded pattern.\nOrange: variability and tension to contextualize.\nRed: greater discontinuity or graphic load; not a diagnosis.'**
   String get legendBody;
 
   /// No description provided for @unlockFullPsychProfile.
   ///
   /// In en, this message translates to:
-  /// **'Unlock the full psychological profile'**
+  /// **'Unlock the detailed reading'**
   String get unlockFullPsychProfile;
 
   /// No description provided for @unlockFullPsychProfileBody.
   ///
   /// In en, this message translates to:
-  /// **'You already completed analysis. Unlock complete psychological interpretation, semaforo meaning, and full quantitative markers.'**
+  /// **'You already completed analysis. Unlock a more detailed exploratory reading, semaforo meaning, and full quantitative markers.'**
   String get unlockFullPsychProfileBody;
 
   /// No description provided for @valuePsychReport.
   ///
   /// In en, this message translates to:
-  /// **'Psychological full report'**
+  /// **'Detailed exploratory report'**
   String get valuePsychReport;
 
   /// No description provided for @valueRiskMarkers.
@@ -854,25 +1046,25 @@ abstract class AppLocalizations {
   /// No description provided for @signalPotentialPathology.
   ///
   /// In en, this message translates to:
-  /// **'Potential pathology'**
+  /// **'Higher load'**
   String get signalPotentialPathology;
 
   /// No description provided for @overallGreenTitle.
   ///
   /// In en, this message translates to:
-  /// **'GREEN PROFILE - Equilibrium and serenity'**
+  /// **'GREEN PROFILE - More regular sample'**
   String get overallGreenTitle;
 
   /// No description provided for @overallOrangeTitle.
   ///
   /// In en, this message translates to:
-  /// **'ORANGE PROFILE - Emotional tension and fragility'**
+  /// **'ORANGE PROFILE - Variability and tension'**
   String get overallOrangeTitle;
 
   /// No description provided for @overallRedTitle.
   ///
   /// In en, this message translates to:
-  /// **'RED PROFILE - Potentially pathological traits'**
+  /// **'RED PROFILE - Load or discontinuity'**
   String get overallRedTitle;
 
   /// No description provided for @proUnlockedFullDataAvailable.

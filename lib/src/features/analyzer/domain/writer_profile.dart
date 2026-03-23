@@ -36,30 +36,34 @@ class WriterProfile {
       letterSizeVariance: (json['letterSizeVariance'] as num).toDouble(),
       penLiftFrequency: (json['penLiftFrequency'] as num).toDouble(),
       confidenceScore: (json['confidenceScore'] as num).toDouble(),
-      contrastIndex: ((json['contrastIndex'] as num?)?.toDouble() ?? 0.7)
-          .clamp(0.0, 1.0),
+      contrastIndex: ((json['contrastIndex'] as num?)?.toDouble() ?? 0.7).clamp(
+        0.0,
+        1.0,
+      ),
       sharpnessIndex: ((json['sharpnessIndex'] as num?)?.toDouble() ?? 0.7)
           .clamp(0.0, 1.0),
-      coverageIndex: ((json['coverageIndex'] as num?)?.toDouble() ?? 0.7)
-          .clamp(0.0, 1.0),
+      coverageIndex: ((json['coverageIndex'] as num?)?.toDouble() ?? 0.7).clamp(
+        0.0,
+        1.0,
+      ),
       qualityGateScore: ((json['qualityGateScore'] as num?)?.toDouble() ?? 0.7)
           .clamp(0.0, 1.0),
     );
   }
 
   bool get qualityGateNeedsAttention {
-    return qualityGateScore < 0.58 || confidenceScore < 0.55;
+    return qualityGateScore < 0.64 || confidenceScore < 0.61;
   }
 
   List<String> qualityGateHints(AppLocalizations l10n) {
     final hints = <String>[];
-    if (coverageIndex < 0.46) {
+    if (coverageIndex < 0.51) {
       hints.add(l10n.qualityHintCoverageLow);
     }
-    if (contrastIndex < 0.44) {
+    if (contrastIndex < 0.48) {
       hints.add(l10n.qualityHintContrastLow);
     }
-    if (sharpnessIndex < 0.44) {
+    if (sharpnessIndex < 0.48) {
       hints.add(l10n.qualityHintSharpnessLow);
     }
     if (hints.isEmpty && qualityGateNeedsAttention) {
@@ -69,10 +73,10 @@ class WriterProfile {
   }
 
   String confidenceLabel(AppLocalizations l10n) {
-    if (confidenceScore >= 0.75) {
+    if (confidenceScore >= 0.82) {
       return l10n.confidenceHigh;
     }
-    if (confidenceScore >= 0.45) {
+    if (confidenceScore >= 0.50) {
       return l10n.confidenceMedium;
     }
     return l10n.confidenceLow;
@@ -90,6 +94,7 @@ class WriterProfile {
     final details = <String>[];
 
     details.add(overallStateDescription(l10n));
+    details.add(psychologicalSnapshot(l10n));
     details.add(
       l10n.detailedSpacingNarrative(
         spacingRatio.toStringAsFixed(2),
@@ -114,9 +119,49 @@ class WriterProfile {
             : l10n.detailedPenLiftFluid,
       ),
     );
+    details.add(confidenceAdvice(l10n));
     details.add(l10n.detailedInterpretationNote);
 
     return details.join(' ');
+  }
+
+  String psychologicalSnapshot(AppLocalizations l10n) {
+    return l10n.psychologicalSnapshot(
+      _baselineMeaning(l10n),
+      _slantMeaning(l10n),
+      _pressureMeaning(l10n),
+      spacingRatio > 1.25
+          ? l10n.detailedSpacingAutonomy
+          : l10n.detailedSpacingCloseness,
+      penLiftFrequency > 0.55
+          ? l10n.detailedPenLiftSegmented
+          : l10n.detailedPenLiftFluid,
+    );
+  }
+
+  List<PsychologicalCue> exploratoryCues(AppLocalizations l10n) {
+    return [_loadCue(l10n), _stabilityCue(l10n), _rhythmCue(l10n)];
+  }
+
+  String wellbeingSuggestion(AppLocalizations l10n) {
+    switch (overallSignal) {
+      case MetricSignal.green:
+        return l10n.wellbeingSuggestionGreen;
+      case MetricSignal.orange:
+        return l10n.wellbeingSuggestionOrange;
+      case MetricSignal.red:
+        return l10n.wellbeingSuggestionRed;
+    }
+  }
+
+  String confidenceAdvice(AppLocalizations l10n) {
+    if (confidenceScore >= 0.82) {
+      return l10n.confidenceAdviceHigh;
+    }
+    if (confidenceScore >= 0.50) {
+      return l10n.confidenceAdviceMedium;
+    }
+    return l10n.confidenceAdviceLow;
   }
 
   List<ProfileMetric> detailedMetrics(AppLocalizations l10n) {
@@ -173,10 +218,10 @@ class WriterProfile {
   }
 
   MetricSignal get confidenceSignal {
-    if (confidenceScore >= 0.75) {
+    if (confidenceScore >= 0.82) {
       return MetricSignal.green;
     }
-    if (confidenceScore >= 0.45) {
+    if (confidenceScore >= 0.50) {
       return MetricSignal.orange;
     }
     return MetricSignal.red;
@@ -276,12 +321,22 @@ class WriterProfile {
     return l10n.quickSlantNeutral;
   }
 
+  String _pressureMeaning(AppLocalizations l10n) {
+    if (pressureIndex > 0.68) {
+      return l10n.psychPressureHigh;
+    }
+    if (pressureIndex < 0.38) {
+      return l10n.psychPressureLow;
+    }
+    return l10n.psychPressureBalanced;
+  }
+
   MetricSignal _baselineSignal() {
     final abs = baselineAngle.abs();
-    if (abs <= 4.5) {
+    if (abs <= 4.0) {
       return MetricSignal.green;
     }
-    if (abs <= 9.0) {
+    if (abs <= 8.1) {
       return MetricSignal.orange;
     }
     return MetricSignal.red;
@@ -289,54 +344,144 @@ class WriterProfile {
 
   MetricSignal _slantSignal() {
     final abs = slantAngle.abs();
-    if (abs <= 12.5) {
+    if (abs <= 11.25) {
       return MetricSignal.green;
     }
-    if (abs <= 20.0) {
+    if (abs <= 18.0) {
       return MetricSignal.orange;
     }
     return MetricSignal.red;
   }
 
   MetricSignal _pressureSignal() {
-    if (pressureIndex >= 0.34 && pressureIndex <= 0.72) {
+    if (pressureIndex >= 0.38 && pressureIndex <= 0.68) {
       return MetricSignal.green;
     }
-    if (pressureIndex >= 0.24 && pressureIndex <= 0.82) {
+    if (pressureIndex >= 0.28 && pressureIndex <= 0.78) {
       return MetricSignal.orange;
     }
     return MetricSignal.red;
   }
 
   MetricSignal _spacingSignal() {
-    if (spacingRatio >= 0.82 && spacingRatio <= 1.55) {
+    if (spacingRatio >= 0.89 && spacingRatio <= 1.48) {
       return MetricSignal.green;
     }
-    if (spacingRatio >= 0.60 && spacingRatio <= 1.95) {
+    if (spacingRatio >= 0.66 && spacingRatio <= 1.82) {
       return MetricSignal.orange;
     }
     return MetricSignal.red;
   }
 
   MetricSignal _sizeVarianceSignal() {
-    if (letterSizeVariance <= 0.42) {
+    if (letterSizeVariance <= 0.38) {
       return MetricSignal.green;
     }
-    if (letterSizeVariance <= 0.66) {
+    if (letterSizeVariance <= 0.59) {
       return MetricSignal.orange;
     }
     return MetricSignal.red;
   }
 
   MetricSignal _penLiftSignal() {
-    if (penLiftFrequency <= 0.46) {
+    if (penLiftFrequency <= 0.41) {
       return MetricSignal.green;
     }
-    if (penLiftFrequency <= 0.70) {
+    if (penLiftFrequency <= 0.63) {
       return MetricSignal.orange;
     }
     return MetricSignal.red;
   }
+
+  PsychologicalCue _loadCue(AppLocalizations l10n) {
+    if (pressureIndex >= 0.78 ||
+        (penLiftFrequency > 0.63 && letterSizeVariance > 0.59)) {
+      return PsychologicalCue(
+        title: l10n.psychCueStress,
+        detail: l10n.psychCueStressDetail,
+        signal: MetricSignal.red,
+      );
+    }
+    if (overallSignal == MetricSignal.green &&
+        pressureIndex >= 0.36 &&
+        pressureIndex <= 0.62 &&
+        penLiftFrequency <= 0.41 &&
+        letterSizeVariance <= 0.38) {
+      return PsychologicalCue(
+        title: l10n.psychCueSerenity,
+        detail: l10n.psychCueSerenityDetail,
+        signal: MetricSignal.green,
+      );
+    }
+    return PsychologicalCue(
+      title: l10n.psychCueActivation,
+      detail: l10n.psychCueActivationDetail,
+      signal: MetricSignal.orange,
+    );
+  }
+
+  PsychologicalCue _stabilityCue(AppLocalizations l10n) {
+    if (baselineAngle.abs() > 8.1 ||
+        (letterSizeVariance > 0.59 && penLiftFrequency > 0.41)) {
+      return PsychologicalCue(
+        title: l10n.psychCueDiscontinuity,
+        detail: l10n.psychCueDiscontinuityDetail,
+        signal: MetricSignal.red,
+      );
+    }
+    if (baselineAngle.abs() <= 4.0 &&
+        letterSizeVariance <= 0.38 &&
+        spacingRatio >= 0.89 &&
+        spacingRatio <= 1.48) {
+      return PsychologicalCue(
+        title: l10n.psychCueStability,
+        detail: l10n.psychCueStabilityDetail,
+        signal: MetricSignal.green,
+      );
+    }
+    return PsychologicalCue(
+      title: l10n.psychCueSensitivity,
+      detail: l10n.psychCueSensitivityDetail,
+      signal: MetricSignal.orange,
+    );
+  }
+
+  PsychologicalCue _rhythmCue(AppLocalizations l10n) {
+    if (penLiftFrequency > 0.63 ||
+        (letterSizeVariance > 0.59 && baselineAngle.abs() > 8.1)) {
+      return PsychologicalCue(
+        title: l10n.psychCueFragmentation,
+        detail: l10n.psychCueFragmentationDetail,
+        signal: MetricSignal.red,
+      );
+    }
+    if (penLiftFrequency <= 0.41 &&
+        letterSizeVariance <= 0.38 &&
+        baselineAngle.abs() <= 4.0) {
+      return PsychologicalCue(
+        title: l10n.psychCueFluidity,
+        detail: l10n.psychCueFluidityDetail,
+        signal: MetricSignal.green,
+      );
+    }
+    return PsychologicalCue(
+      title: l10n.psychCueVariability,
+      detail: l10n.psychCueVariabilityDetail,
+      signal: MetricSignal.orange,
+    );
+  }
+}
+
+class PsychologicalCue {
+  const PsychologicalCue({
+    required this.title,
+    required this.detail,
+    required this.signal,
+  });
+
+  final String title;
+  final String detail;
+  final MetricSignal signal;
 }
 
 class ProfileMetric {

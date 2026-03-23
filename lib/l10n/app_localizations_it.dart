@@ -151,22 +151,22 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get overallSummaryGreen => 'Profilo generale: personalità centrata, serena e con buona autoregolazione.';
+  String get overallSummaryGreen => 'Campione regolare: equilibrio grafico discreto e carico non elevato.';
 
   @override
-  String get overallSummaryOrange => 'Profilo generale: personalità sensibile con tensione interna e sbalzi.';
+  String get overallSummaryOrange => 'Campione variabile: stress e tensione da leggere con cautela.';
 
   @override
-  String get overallSummaryRed => 'Profilo generale: segnali di disregolazione emotiva e rischio elevato.';
+  String get overallSummaryRed => 'Campione piu carico: possibili marker di fatica e tensione.';
 
   @override
-  String get overallDescriptionGreen => 'Profilo verde: emergono stabilità affettiva, buon controllo degli impulsi e capacità di adattarsi allo stress quotidiano senza perdere equilibrio.';
+  String get overallDescriptionGreen => 'Profilo verde: il campione appare piu stabile del resto della scala, con ritmo grafico abbastanza continuo, attivazione contenuta e una regolazione visiva complessivamente ordinata.';
 
   @override
-  String get overallDescriptionOrange => 'Profilo arancione: emergono elevata sensibilità, carico interno aumentato e vulnerabilità alla pressione; nelle fasi stressanti può crescere la reattività relazionale.';
+  String get overallDescriptionOrange => 'Profilo arancione: il campione mostra maggiore variabilita, possibile sensibilita alla pressione situazionale e oscillazioni del ritmo grafico da contestualizzare con altre osservazioni.';
 
   @override
-  String get overallDescriptionRed => 'Profilo rosso: emergono pattern persistenti di sofferenza psicologica, possibile disregolazione affettiva e marcatori potenzialmente patologici. Se il quadro si ripete, è consigliabile un approfondimento professionale.';
+  String get overallDescriptionRed => 'Profilo rosso: il campione mostra carico grafico elevato o discontinuita marcate. Questi marker possono accompagnare tensione, affaticamento o instabilita del gesto, ma non equivalgono a una diagnosi.';
 
   @override
   String quickSummaryCompact(Object state, Object baseline, Object slant) {
@@ -219,13 +219,108 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get detailedPenLiftSegmented => 'una sequenza cognitiva più segmentata';
+  String get detailedPenLiftSegmented => 'una sequenza cognitiva piu segmentata';
 
   @override
-  String get detailedPenLiftFluid => 'una continuità cognitiva più fluida';
+  String get detailedPenLiftFluid => 'una continuita cognitiva piu fluida';
 
   @override
-  String get detailedInterpretationNote => 'Nota interpretativa: questa lettura è di tipo screening psicologico e non costituisce diagnosi medica o psichiatrica.';
+  String psychologicalSnapshot(Object baseline, Object slant, Object pressure, Object spacing, Object rhythm) {
+    return 'Lettura psicologica prudente: baseline $baseline, inclinazione $slant, pressione $pressure, spaziatura compatibile con $spacing, ritmo grafico vicino a $rhythm.';
+  }
+
+  @override
+  String get psychPressureHigh => 'attivazione interna elevata';
+
+  @override
+  String get psychPressureBalanced => 'modulazione tonica abbastanza equilibrata';
+
+  @override
+  String get psychPressureLow => 'attivazione contenuta o tratto leggero';
+
+  @override
+  String get confidenceAdviceHigh => 'Affidabilita buona per una lettura esplorativa, ma l\'immagine resta solo un indizio visivo.';
+
+  @override
+  String get confidenceAdviceMedium => 'Affidabilita intermedia: usa il risultato come spunto e non come conclusione.';
+
+  @override
+  String get confidenceAdviceLow => 'Affidabilita bassa: prima di interpretare, rifai la foto e confronta piu campioni.';
+
+  @override
+  String get wellbeingSuggestionTitle => 'Suggerimento benessere';
+
+  @override
+  String get wellbeingSuggestionGreen => 'Se il campione ti sembra coerente, mantieni routine semplici che proteggono equilibrio: sonno regolare, pause e scrittura lenta senza fretta.';
+
+  @override
+  String get wellbeingSuggestionOrange => 'Se noti tensione ricorrente, prova pause brevi, respiro lento, riduzione della fretta e qualche riga di journaling per scaricare il carico.';
+
+  @override
+  String get wellbeingSuggestionRed => 'Se questi segnali si ripetono su piu campioni o insieme a disagio reale, riduci il carico, cura sonno e pause, e considera un confronto con un professionista qualificato.';
+
+  @override
+  String get detailedInterpretationNote => 'Nota interpretativa: i marker grafomotori possono descrivere qualita del gesto, ma la grafologia di personalita non ha validazione robusta; questa lettura resta esplorativa e non diagnostica.';
+
+  @override
+  String get psychCuesTitle => 'Voci psicologiche esplorative';
+
+  @override
+  String get psychCuesBody => 'Sono etichette orientative derivate da pressione, regolarita e ritmo del gesto. Rendono il profilo piu psicologico, ma non definiscono in modo definitivo la persona.';
+
+  @override
+  String get psychCueSerenity => 'Serenità';
+
+  @override
+  String get psychCueSerenityDetail => 'Il gesto appare ben regolato, con carico contenuto e continuita sufficientemente ordinata.';
+
+  @override
+  String get psychCueActivation => 'Attivazione';
+
+  @override
+  String get psychCueActivationDetail => 'Si nota energia presente ma non estrema; il campione va letto alla luce del contesto e del momento.';
+
+  @override
+  String get psychCueStress => 'Stress';
+
+  @override
+  String get psychCueStressDetail => 'Pressione o frammentazione elevate possono accompagnare tensione e sovraccarico situazionale.';
+
+  @override
+  String get psychCueStability => 'Stabilità';
+
+  @override
+  String get psychCueStabilityDetail => 'Linea e proporzioni abbastanza coerenti suggeriscono un assetto del gesto piu stabile.';
+
+  @override
+  String get psychCueSensitivity => 'Sensibilità';
+
+  @override
+  String get psychCueSensitivityDetail => 'Piccole oscillazioni del gesto possono riflettere reattivita al contesto o variabilita del momento.';
+
+  @override
+  String get psychCueDiscontinuity => 'Discontinuità';
+
+  @override
+  String get psychCueDiscontinuityDetail => 'Scarti marcati del gesto possono indicare un andamento poco regolare del campione.';
+
+  @override
+  String get psychCueFluidity => 'Fluidità';
+
+  @override
+  String get psychCueFluidityDetail => 'La sequenza scrittoria appare abbastanza continua e poco spezzata.';
+
+  @override
+  String get psychCueVariability => 'Variabilità';
+
+  @override
+  String get psychCueVariabilityDetail => 'Il ritmo alterna tratti piu continui e altri piu controllati o segmentati.';
+
+  @override
+  String get psychCueFragmentation => 'Frammentazione';
+
+  @override
+  String get psychCueFragmentationDetail => 'Il ritmo appare piu interrotto o spezzato, con minore continuita motoria.';
 
   @override
   String get metricBaselineName => 'Angolo baseline';
@@ -234,7 +329,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get metricBaselineExplanation => 'Traccia stabilità della linea e deriva direzionale nel campione di scrittura.';
 
   @override
-  String get metricBaselineRule => 'Regola segnale: Verde <= 4.5°, Arancione <= 9°, Rosso > 9°.';
+  String get metricBaselineRule => 'Regola segnale: Verde <= 4.0°, Arancione <= 8.1°, Rosso > 8.1°.';
 
   @override
   String get metricSlantName => 'Angolo inclinazione';
@@ -243,7 +338,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get metricSlantExplanation => 'Rileva apertura emotiva rispetto a uno stile comunicativo più difensivo.';
 
   @override
-  String get metricSlantRule => 'Regola segnale: Verde <= 12.5°, Arancione <= 20°, Rosso > 20°.';
+  String get metricSlantRule => 'Regola segnale: Verde <= 11.3°, Arancione <= 18.0°, Rosso > 18.0°.';
 
   @override
   String get metricPressureName => 'Indice pressione';
@@ -252,7 +347,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get metricPressureExplanation => 'Stima la forza espressiva da densità e scurezza del tratto.';
 
   @override
-  String get metricPressureRule => 'Regola segnale: Verde 0.34-0.72, Arancione 0.24-0.82, Rosso fuori range.';
+  String get metricPressureRule => 'Regola segnale: Verde 0.38-0.68, Arancione 0.28-0.78, Rosso fuori range.';
 
   @override
   String get metricSpacingName => 'Rapporto spaziatura';
@@ -261,7 +356,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get metricSpacingExplanation => 'Misura l\'equilibrio medio degli spazi tra i gruppi di tratto.';
 
   @override
-  String get metricSpacingRule => 'Regola segnale: Verde 0.82-1.55, Arancione 0.60-1.95, Rosso fuori range.';
+  String get metricSpacingRule => 'Regola segnale: Verde 0.89-1.48, Arancione 0.66-1.82, Rosso fuori range.';
 
   @override
   String get metricSizeVarianceName => 'Varianza dimensione';
@@ -270,7 +365,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get metricSizeVarianceExplanation => 'Riflette la coerenza di altezza delle lettere e del ritmo visivo.';
 
   @override
-  String get metricSizeVarianceRule => 'Regola segnale: Verde <= 0.42, Arancione <= 0.66, Rosso > 0.66.';
+  String get metricSizeVarianceRule => 'Regola segnale: Verde <= 0.38, Arancione <= 0.59, Rosso > 0.59.';
 
   @override
   String get metricPenLiftsName => 'Sollevamenti penna';
@@ -279,7 +374,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get metricPenLiftsExplanation => 'Approssima quanto la sequenza motoria appaia segmentata o continua.';
 
   @override
-  String get metricPenLiftsRule => 'Regola segnale: Verde <= 0.46, Arancione <= 0.70, Rosso > 0.70.';
+  String get metricPenLiftsRule => 'Regola segnale: Verde <= 0.41, Arancione <= 0.63, Rosso > 0.63.';
 
   @override
   String get qualityGateTitle => 'Controllo qualità acquisizione';
@@ -311,7 +406,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get scienceRefsTitle => 'Riferimenti scientifici';
 
   @override
-  String get scienceRefsDisclaimer => 'Riferimenti divulgativi. L\'app non fornisce diagnosi.';
+  String get scienceRefsDisclaimer => 'Fonti primarie su tre piani: limiti della grafologia di personalita, marker grafomotori in ambito motorio-cognitivo e possibili benefici modesti della scrittura espressiva. Non validano diagnosi o profili psicologici individuali dal singolo campione.';
 
   @override
   String get openSource => 'Apri fonte';
@@ -321,7 +416,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String freeProTeaserBody(Object price) {
-    return 'Sblocca Pro per ottenere profilo psicologico completo, tutti i marcatori quantitativi e risultato senza pubblicità a $price.';
+    return 'Sblocca Pro per ottenere lettura esplorativa dettagliata, tutti i marcatori quantitativi e risultato senza pubblicità a $price.';
   }
 
   @override
@@ -342,6 +437,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get errorNotEnoughHandwriting => 'Scrittura insufficiente rilevata. Riprova con un\'inquadratura migliore.';
 
   @override
+  String get errorHandwritingRequired => 'Fotografa un testo scritto a mano! Riprova.';
+
+  @override
   String get tabFree => 'Gratis';
 
   @override
@@ -354,16 +452,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get legendTitle => 'Legenda psicologica semaforica';
 
   @override
-  String get legendBody => 'Verde: equilibrio e serenità.\nArancione: tensione/vulnerabilità emotiva.\nRosso: tratti potenzialmente patologici (segnale di screening).';
+  String get legendBody => 'Verde: pattern piu regolare e meno carico.\nArancione: variabilita e tensione da contestualizzare.\nRosso: maggiore discontinuita o carico grafico; non e diagnosi.';
 
   @override
-  String get unlockFullPsychProfile => 'Sblocca il profilo psicologico completo';
+  String get unlockFullPsychProfile => 'Sblocca la lettura dettagliata';
 
   @override
-  String get unlockFullPsychProfileBody => 'Hai già completato l’analisi. Sblocca interpretazione psicologica completa, significato semaforo e tutti i marcatori quantitativi.';
+  String get unlockFullPsychProfileBody => 'Hai già completato l’analisi. Sblocca lettura esplorativa dettagliata, significato semaforo e tutti i marcatori quantitativi.';
 
   @override
-  String get valuePsychReport => 'Report psicologico completo';
+  String get valuePsychReport => 'Lettura esplorativa dettagliata';
 
   @override
   String get valueRiskMarkers => 'Marcatori di rischio potenziale';
@@ -410,16 +508,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get signalVulnerability => 'Vulnerabilità';
 
   @override
-  String get signalPotentialPathology => 'Potenziale patologia';
+  String get signalPotentialPathology => 'Carico elevato';
 
   @override
-  String get overallGreenTitle => 'PROFILO VERDE - Equilibrio e serenità';
+  String get overallGreenTitle => 'PROFILO VERDE - Campione piu regolare';
 
   @override
-  String get overallOrangeTitle => 'PROFILO ARANCIONE - Tensione e fragilità emotiva';
+  String get overallOrangeTitle => 'PROFILO ARANCIONE - Variabilita e tensione';
 
   @override
-  String get overallRedTitle => 'PROFILO ROSSO - Tratti potenzialmente patologici';
+  String get overallRedTitle => 'PROFILO ROSSO - Carico o discontinuita';
 
   @override
   String get proUnlockedFullDataAvailable => 'Pro sbloccato. Dati completi disponibili.';

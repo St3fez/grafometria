@@ -16,6 +16,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../monetization/ad_unit_ids.dart';
 import '../application/grafometry_analyzer.dart';
+import '../application/printed_text_guard.dart';
 import '../domain/writer_profile.dart';
 
 class AnalyzerPage extends StatefulWidget {
@@ -53,6 +54,7 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
   final _analyzer = GrafometryAnalyzer();
   final _inAppPurchase = InAppPurchase.instance;
   final _shareTempFiles = <File>[];
+  PrintedTextGuard? _printedTextGuard;
 
   StreamSubscription<List<PurchaseDetails>>? _purchaseSubscription;
   Completer<_UnlockOutcome>? _purchaseCompleter;
@@ -77,7 +79,7 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
   bool get _isWidgetTest => const bool.fromEnvironment('FLUTTER_TEST');
   AppLocalizations get _l10n => AppLocalizations.of(context)!;
 
-  bool get _supportsMonetization {
+  bool get _supportsStoreBilling {
     if (!widget.enableMonetization || kIsWeb || _isWidgetTest) {
       return false;
     }
@@ -85,11 +87,29 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
         defaultTargetPlatform == TargetPlatform.iOS;
   }
 
+  bool get _supportsAds {
+    if (!_supportsStoreBilling) {
+      return false;
+    }
+    return AdUnitIds.banner != null || AdUnitIds.interstitial != null;
+  }
+
   String get _proPriceLabel => _proProduct?.price ?? '€0.99';
+
+  bool get _supportsPrintedTextGuard {
+    if (_isWidgetTest || kIsWeb) {
+      return false;
+    }
+    return defaultTargetPlatform == TargetPlatform.android ||
+        defaultTargetPlatform == TargetPlatform.iOS;
+  }
 
   @override
   void initState() {
     super.initState();
+    if (_supportsPrintedTextGuard) {
+      _printedTextGuard = MlKitPrintedTextGuard();
+    }
     _restoreSessionResult();
     if (_isWidgetTest) {
       _isLoadingConsent = false;
@@ -99,8 +119,11 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
       unawaited(_loadConsentState());
     }
     _recoverLostData();
-    if (_supportsMonetization) {
-      _initMonetization();
+    if (_supportsStoreBilling) {
+      _initStoreBilling();
+    }
+    if (_supportsAds) {
+      _initAds();
     }
   }
 
@@ -118,6 +141,7 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
     _purchaseSubscription?.cancel();
     _bannerAd?.dispose();
     _interstitialAd?.dispose();
+    unawaited(_printedTextGuard?.close() ?? Future<void>.value());
     for (final file in _shareTempFiles) {
       unawaited(() async {
         try {
@@ -153,7 +177,7 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
     }
   }
 
-  void _initMonetization() {
+  void _initStoreBilling() {
     _purchaseSubscription = _inAppPurchase.purchaseStream.listen(
       _onPurchaseUpdates,
       onError: (_) {
@@ -168,6 +192,9 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
       },
     );
     unawaited(_loadStoreProducts());
+  }
+
+  void _initAds() {
     _loadBannerAd();
     _loadInterstitialAd();
   }
@@ -203,7 +230,6 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
   Future<void> _analyzeCapture(XFile file) async {
     try {
       final bytes = await file.readAsBytes();
-      await _eraseTemporaryCapture(file);
       setState(() {
         _capturedBytes = bytes;
         _profile = null;
@@ -216,6 +242,20 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
       _sessionCapturedBytes = bytes;
       _sessionProfile = null;
       _sessionProUnlockedForCurrentResult = false;
+
+      final printedInspection = await _inspectPrintedText(file.path);
+      await _eraseTemporaryCapture(file);
+      if (printedInspection.isLikelyPrinted) {
+        if (!mounted) {
+          return;
+        }
+        setState(() {
+          _isAnalyzing = false;
+          _profile = null;
+          _errorMessage = _l10n.errorHandwritingRequired;
+        });
+        return;
+      }
 
       final profile = await _analyzer.analyze(bytes);
       await _showInterstitialBeforeResult();
@@ -240,6 +280,19 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
     }
   }
 
+  Future<PrintedTextInspection> _inspectPrintedText(String imagePath) async {
+    final guard = _printedTextGuard;
+    if (guard == null) {
+      return const PrintedTextInspection.none();
+    }
+
+    try {
+      return await guard.inspect(imagePath);
+    } catch (_) {
+      return const PrintedTextInspection.none();
+    }
+  }
+
   String _localizedAnalyzerError(Object error) {
     final raw = error.toString().replaceFirst(
       RegExp(r'^FormatException:\s*'),
@@ -252,6 +305,8 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
         return _l10n.errorImageTooSmall;
       case 'Not enough handwriting detected. Try with better framing.':
         return _l10n.errorNotEnoughHandwriting;
+      case 'Photograph handwritten text and retry.':
+        return _l10n.errorHandwritingRequired;
       default:
         return raw;
     }
@@ -307,7 +362,7 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
       _sessionProUnlockedForCurrentResult = true;
       return _UnlockOutcome.unlocked;
     }
-    if (!_supportsMonetization) {
+    if (!_supportsStoreBilling) {
       setState(() {
         _proUnlockedForCurrentResult = true;
       });
@@ -498,7 +553,7 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
   }
 
   Future<void> _showInterstitialBeforeResult() async {
-    if (!_supportsMonetization || _proUnlockedForCurrentResult) {
+    if (!_supportsAds || _proUnlockedForCurrentResult) {
       return;
     }
     final ad = _interstitialAd;
@@ -532,7 +587,10 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
   }
 
   Widget? _buildBanner() {
-    if (_proUnlockedForCurrentResult || !_isBannerReady || _bannerAd == null) {
+    if (!_supportsAds ||
+        _proUnlockedForCurrentResult ||
+        !_isBannerReady ||
+        _bannerAd == null) {
       return null;
     }
     return SafeArea(
@@ -964,6 +1022,7 @@ class _AnalyzerPageState extends State<AnalyzerPage> {
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
+      useSafeArea: true,
       builder: (context) => _PolicySheet(
         accepted: _hasComplianceConsent,
         onAccept: () async {
@@ -1486,19 +1545,39 @@ class _ResultPopupState extends State<_ResultPopup>
     with SingleTickerProviderStateMixin {
   static final _scientificReferences = <_ScientificRef>[
     const _ScientificRef(
-      title: 'MDS Clinical Diagnostic Criteria for Parkinson\'s Disease (2015)',
-      source: 'Postuma RB et al., Movement Disorders, PMID: 26474316',
-      url: 'https://pubmed.ncbi.nlm.nih.gov/26474316/',
+      title:
+          'Graphology and personality: an empirical study on validity of handwriting analysis (2010)',
+      source: 'Dazzi C et al., PMID: 20229925',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/20229925/',
     ),
     const _ScientificRef(
-      title: 'Evaluation of handwriting in Parkinson diagnosis (2016)',
-      source: 'Drotar P et al., Artificial Intelligence in Medicine',
-      url: 'https://doi.org/10.1016/j.artmed.2016.03.004',
+      title: 'Handwriting as a correlate of extraversion (1978)',
+      source: 'Rosenthal DA et al., PMID: 16367174',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/16367174/',
     ),
     const _ScientificRef(
-      title: 'Handwriting changes in Alzheimer\'s disease: review (2023)',
-      source: 'Review article, Journal of Alzheimer\'s Disease',
-      url: 'https://pubmed.ncbi.nlm.nih.gov/35954551/',
+      title:
+          'Validity and student acceptance of a graphoanalytic approach to personality (1976)',
+      source: 'Vestewig RE et al., PMID: 16367342',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/16367342/',
+    ),
+    const _ScientificRef(
+      title:
+          'Computerized assessment of handwriting in de novo Parkinson\'s disease (2024)',
+      source: 'Diaz-Feliz C et al., PMID: 39094212',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/39094212/',
+    ),
+    const _ScientificRef(
+      title:
+          'Handwriting Changes in Alzheimer\'s Disease: A Systematic Review (2023)',
+      source: 'Fernandes CP et al., PMID: 37718808',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/37718808/',
+    ),
+    const _ScientificRef(
+      title:
+          'The delayed, durable effect of expressive writing on depression, anxiety and stress (2023)',
+      source: 'Guo J et al., PMID: 36536513',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/36536513/',
     ),
   ];
 
@@ -1567,6 +1646,7 @@ class _ResultPopupState extends State<_ResultPopup>
       maxScaleFactor: isCompact ? 1.1 : 1.2,
     );
     final metrics = widget.profile.detailedMetrics(l10n);
+    final cues = widget.profile.exploratoryCues(l10n);
     final freeMetrics = metrics.take(3).toList();
     final proOnlyIndicators = (metrics.length - freeMetrics.length).clamp(
       0,
@@ -1666,7 +1746,50 @@ class _ResultPopupState extends State<_ResultPopup>
                             Card(
                               child: Padding(
                                 padding: const EdgeInsets.all(14),
-                                child: Text(widget.profile.quickSummary(l10n)),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(widget.profile.quickSummary(l10n)),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      widget.profile.psychologicalSnapshot(
+                                        l10n,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            _PsychCueSection(cues: cues),
+                            const SizedBox(height: 8),
+                            Card(
+                              color: const Color(0xFFF8FAFB),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      l10n.wellbeingSuggestionTitle,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      widget.profile.wellbeingSuggestion(l10n),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      widget.profile.confidenceAdvice(l10n),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xFF52616D),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -1768,6 +1891,8 @@ class _ResultPopupState extends State<_ResultPopup>
                                     ),
                                   ),
                                   const SizedBox(height: 8),
+                                  _PsychCueSection(cues: cues, detailed: true),
+                                  const SizedBox(height: 8),
                                   Card(
                                     color: const Color(0xFFF8FAFB),
                                     child: Padding(
@@ -1776,6 +1901,41 @@ class _ResultPopupState extends State<_ResultPopup>
                                         widget.profile.overallStateDescription(
                                           l10n,
                                         ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Card(
+                                    color: const Color(0xFFF8FAFB),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            l10n.wellbeingSuggestionTitle,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 6),
+                                          Text(
+                                            widget.profile.wellbeingSuggestion(
+                                              l10n,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Text(
+                                            widget.profile.confidenceAdvice(
+                                              l10n,
+                                            ),
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              color: Color(0xFF52616D),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -2222,6 +2382,139 @@ class _MetricLine extends StatelessWidget {
   }
 }
 
+class _PsychCueSection extends StatelessWidget {
+  const _PsychCueSection({required this.cues, this.detailed = false});
+
+  final List<PsychologicalCue> cues;
+  final bool detailed;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return Card(
+      color: const Color(0xFFF8FAFB),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.psychCuesTitle,
+              style: const TextStyle(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              l10n.psychCuesBody,
+              style: const TextStyle(fontSize: 12, color: Color(0xFF52616D)),
+            ),
+            const SizedBox(height: 10),
+            if (!detailed)
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: cues
+                    .map((cue) => _PsychCueChip(cue: cue))
+                    .toList(growable: false),
+              )
+            else
+              Column(
+                children: cues
+                    .map((cue) => _PsychCueLine(cue: cue))
+                    .toList(growable: false),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PsychCueChip extends StatelessWidget {
+  const _PsychCueChip({required this.cue});
+
+  final PsychologicalCue cue;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: _signalBg(cue.signal),
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Text(
+          cue.title,
+          style: TextStyle(
+            color: _signalFg(cue.signal),
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PsychCueLine extends StatelessWidget {
+  const _PsychCueLine({required this.cue});
+
+  final PsychologicalCue cue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xFFD9E3E8)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 10,
+                height: 10,
+                margin: const EdgeInsets.only(top: 4),
+                decoration: BoxDecoration(
+                  color: _signalFg(cue.signal),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      cue.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: _signalFg(cue.signal),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      cue.detail,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF3A4A56),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _ShareButton extends StatelessWidget {
   const _ShareButton({
     required this.icon,
@@ -2286,79 +2579,84 @@ class _PolicySheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 16,
-        right: 16,
-        top: 8,
-        bottom: 16 + MediaQuery.of(context).viewInsets.bottom,
-      ),
-      child: SizedBox(
-        height: MediaQuery.sizeOf(context).height * 0.86,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.policyTitle,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
-            ),
-            const SizedBox(height: 8),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Text(l10n.policyBody, style: TextStyle(height: 1.38)),
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 8,
+          bottom: 16 + MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.86,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.policyTitle,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final stacked = constraints.maxWidth < 430;
+              const SizedBox(height: 8),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Text(l10n.policyBody, style: TextStyle(height: 1.38)),
+                ),
+              ),
+              const SizedBox(height: 10),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final stacked = constraints.maxWidth < 430;
 
-                final withdrawButton = OutlinedButton.icon(
-                  onPressed: () async {
-                    await onWithdraw();
-                    if (context.mounted) {
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  icon: const Icon(Icons.block_outlined),
-                  label: Text(
-                    accepted ? l10n.withdrawConsent : l10n.keepDisabled,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                );
+                  final withdrawButton = OutlinedButton.icon(
+                    onPressed: () async {
+                      await onWithdraw();
+                      if (context.mounted) {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    icon: const Icon(Icons.block_outlined),
+                    label: Text(
+                      accepted ? l10n.withdrawConsent : l10n.keepDisabled,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
 
-                final acceptButton = FilledButton.icon(
-                  onPressed: () async {
-                    await onAccept();
-                    if (context.mounted) {
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  icon: const Icon(Icons.check_circle_outline),
-                  label: Text(l10n.accept, overflow: TextOverflow.ellipsis),
-                );
+                  final acceptButton = FilledButton.icon(
+                    onPressed: () async {
+                      await onAccept();
+                      if (context.mounted) {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    icon: const Icon(Icons.check_circle_outline),
+                    label: Text(l10n.accept, overflow: TextOverflow.ellipsis),
+                  );
 
-                if (stacked) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                  if (stacked) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        withdrawButton,
+                        const SizedBox(height: 10),
+                        acceptButton,
+                      ],
+                    );
+                  }
+
+                  return Row(
                     children: [
-                      withdrawButton,
-                      const SizedBox(height: 10),
-                      acceptButton,
+                      Expanded(child: withdrawButton),
+                      const SizedBox(width: 10),
+                      Expanded(child: acceptButton),
                     ],
                   );
-                }
-
-                return Row(
-                  children: [
-                    Expanded(child: withdrawButton),
-                    const SizedBox(width: 10),
-                    Expanded(child: acceptButton),
-                  ],
-                );
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
